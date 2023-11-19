@@ -1,4 +1,4 @@
-package com.example.invictus.app.dao;
+package invictus.app.dao;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -6,7 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.invictus.app.entity.Cliente;
+import invictus.app.entity.Cliente;
 
 import java.util.List;
 

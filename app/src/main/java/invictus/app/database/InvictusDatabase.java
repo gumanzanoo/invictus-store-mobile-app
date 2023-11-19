@@ -1,16 +1,16 @@
-package com.example.invictus.app.database;
+package invictus.app.database;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
-import com.example.invictus.app.dao.ClienteDao;
-import com.example.invictus.app.dao.ItemsVendaDao;
-import com.example.invictus.app.dao.ProdutoDao;
-import com.example.invictus.app.dao.VendaDao;
-import com.example.invictus.app.entity.Cliente;
-import com.example.invictus.app.entity.ItemsVenda;
-import com.example.invictus.app.entity.Produto;
-import com.example.invictus.app.entity.Venda;
+import invictus.app.dao.ClienteDao;
+import invictus.app.dao.ItemsVendaDao;
+import invictus.app.dao.ProdutoDao;
+import invictus.app.dao.VendaDao;
+import invictus.app.entity.Cliente;
+import invictus.app.entity.ItemsVenda;
+import invictus.app.entity.Produto;
+import invictus.app.entity.Venda;
 
 @Database(entities = {
         Cliente.class,

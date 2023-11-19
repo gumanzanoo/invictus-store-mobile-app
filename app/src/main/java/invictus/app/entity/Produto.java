@@ -1,4 +1,4 @@
-package com.example.invictus.app.entity;
+package invictus.app.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

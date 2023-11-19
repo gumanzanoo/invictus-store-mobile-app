@@ -1,12 +1,12 @@
-package com.example.invictus.app.repository;
+package invictus.app.repository;
 
 import android.content.Context;
 
 import androidx.room.Room;
 
-import com.example.invictus.app.dao.ClienteDao;
-import com.example.invictus.app.database.InvictusDatabase;
-import com.example.invictus.app.entity.Cliente;
+import invictus.app.dao.ClienteDao;
+import invictus.app.database.InvictusDatabase;
+import invictus.app.entity.Cliente;
 
 import java.util.List;
 
