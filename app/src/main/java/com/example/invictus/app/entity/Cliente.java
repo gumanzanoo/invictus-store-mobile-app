@@ -1,5 +1,7 @@
 package com.example.invictus.app.entity;
+
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.ColumnInfo;
 
@@ -20,6 +22,7 @@ public class Cliente {
     public Cliente() {
     }
 
+    @Ignore
     public Cliente(int id, String nome, String email, String documento) {
         this.id = id;
         this.nome = nome;

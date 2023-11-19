@@ -1,18 +1,32 @@
 package com.example.invictus.app.entity;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "vendas",
+        foreignKeys = {
+                @ForeignKey(entity = Cliente.class, parentColumns = "id", childColumns = "cliente_id", onDelete = ForeignKey.CASCADE)
+        })
+
 public class Venda {
+
+    @PrimaryKey(autoGenerate = true)
     private int id;
+
+    @ColumnInfo(name = "cliente_id")
     private int clienteId;
-    private int produtoId;
+
+    @ColumnInfo(name = "valor_total")
     private double valorTotal;
 
     public Venda() {
     }
 
-    public Venda(int id, int clienteId, int produtoId, double valorTotal) {
+    public Venda(int id, int clienteId, double valorTotal) {
         this.id = id;
         this.clienteId = clienteId;
-        this.produtoId = produtoId;
         this.valorTotal = valorTotal;
     }
 
@@ -30,14 +44,6 @@ public class Venda {
 
     public void setClienteId(int clienteId) {
         this.clienteId = clienteId;
-    }
-
-    public int getProdutoId() {
-        return produtoId;
-    }
-
-    public void setProdutoId(int produtoId) {
-        this.produtoId = produtoId;
     }
 
     public double getValorTotal() {
