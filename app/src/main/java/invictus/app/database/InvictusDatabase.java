@@ -17,7 +17,7 @@ import com.example.invictus.app.entity.Venda;
         Produto.class,
         Venda.class,
         ItemsVenda.class
-}, version = 1)
+}, version = 1, exportSchema = false)
 
 public abstract class InvictusDatabase extends RoomDatabase {
     public abstract ClienteDao clienteDao();
