@@ -3,15 +3,19 @@ package com.example.invictus.app.entity;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "vendas",
         foreignKeys = {
                 @ForeignKey(entity = Cliente.class, parentColumns = "id", childColumns = "cliente_id", onDelete = ForeignKey.CASCADE)
+        },
+        indices = {
+                @Index("cliente_id")
+
         })
-
 public class Venda {
-
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -24,6 +28,7 @@ public class Venda {
     public Venda() {
     }
 
+    @Ignore
     public Venda(int id, int clienteId, double valorTotal) {
         this.id = id;
         this.clienteId = clienteId;

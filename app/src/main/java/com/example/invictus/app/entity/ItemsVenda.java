@@ -4,12 +4,17 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "items_venda",
         foreignKeys = {
                 @ForeignKey(entity = Produto.class, parentColumns = "id", childColumns = "id_produto", onDelete = ForeignKey.CASCADE),
                 @ForeignKey(entity = Venda.class, parentColumns = "id", childColumns = "id_venda", onDelete = ForeignKey.CASCADE)
+        },
+        indices = {
+                @Index("id_produto"),
+                @Index("id_venda")
         })
 
 public class ItemsVenda {
