@@ -1,5 +1,6 @@
 package unipar.invictus.app.controller;
 
+import unipar.invictus.app.config.Response;
 import unipar.invictus.app.entity.Usuario;
 import unipar.invictus.app.repository.UsuarioRepository;
 
@@ -10,30 +11,44 @@ public class LoginController {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public long cadastrarUsuario(String nome, String email, String senha) {
+    public Response cadastrarUsuario(String nome, String email, String senha) {
         Usuario savedUser = usuarioRepository.getByEmail(email);
 
         if (savedUser.getEmail().equals(email)) {
-            return -1;
+            return Response.response(Response.BAD_REQUEST,
+                    "Já existe um usuário cadastrado com este e-mail");
         }
 
-        // Implementar lógica de verificação de existência de usuário, se necessário
-
-        // Criar uma instância do usuário
         Usuario usuario = new Usuario();
         usuario.setNome(nome);
         usuario.setEmail(email);
         usuario.setSenha(senha);
 
-        // Inserir o usuário no banco de dados
-        return usuarioRepository.insert(usuario);
+        long userRegistered = usuarioRepository.insert(usuario);
+
+        if (userRegistered > 0) {
+            return Response.response(Response.CREATED,
+                    "Usuário cadastrado com sucesso");
+        }
+
+        return Response.response(Response.INTERNAL_SERVER_ERROR,
+                "Não foi possível cadastrar o usuário");
     }
 
-    public boolean autenticarUsuario(String email, String senha) {
-        // Buscar o usuário no banco de dados com base no e-mail
+    public Response autenticarUsuario(String email, String senha) {
         Usuario usuario = usuarioRepository.getByEmail(email);
 
-        // Verificar se o usuário foi encontrado e se a senha corresponde
-        return usuario != null && usuario.getSenha().equals(senha);
+        if (usuario == null) {
+            return Response.response(Response.NOT_FOUND,
+                    "Este email não está cadastrado.");
+        }
+
+        if (!usuario.getSenha().equals(senha)) {
+            return Response.response(Response.BAD_REQUEST,
+                    "Senha incorreta.");
+        }
+
+        return Response.response(Response.OK,
+                "Usuário autenticado com sucesso.");
     }
 }
