@@ -13,10 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-<<<<<<< HEAD
 rootProject.name = "invictus-store"
-=======
-rootProject.name = "invictus"
->>>>>>> a9ea64288d7ecdc78c7511bd81faa9c8f17349b4
 include(":app")
  

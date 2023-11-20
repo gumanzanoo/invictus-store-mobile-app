@@ -3,6 +3,7 @@ package unipar.invictus.app.entity;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
@@ -35,6 +36,7 @@ public class ItemsVenda {
     public ItemsVenda() {
     }
 
+    @Ignore
     public ItemsVenda(int id, int idVenda, int idProduto, int quantidade) {
         this.id = id;
         this.idVenda = idVenda;

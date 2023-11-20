@@ -10,7 +10,7 @@ import unipar.invictus.app.database.InvictusDatabase;
 import unipar.invictus.app.entity.Usuario;
 
 public class UsuarioRepository {
-    private UsuarioDao usuarioDao;
+    private final UsuarioDao usuarioDao;
 
     public UsuarioRepository(Context context) {
         InvictusDatabase database = Room.databaseBuilder(context, InvictusDatabase.class, "InvictusDatabase").build();

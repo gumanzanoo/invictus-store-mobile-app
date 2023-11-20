@@ -2,6 +2,7 @@ package unipar.invictus.app.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "produtos")
@@ -24,6 +25,7 @@ public class Produto {
     public Produto() {
     }
 
+    @Ignore
     public Produto(int id, String cod, String descricao, double valorUnitario, int qtdEstoque) {
         this.id = id;
         this.cod = cod;

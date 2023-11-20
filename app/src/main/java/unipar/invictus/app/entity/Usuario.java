@@ -2,6 +2,7 @@ package unipar.invictus.app.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "usuarios")
@@ -21,6 +22,7 @@ public class Usuario {
     public Usuario() {
     }
 
+    @Ignore
     public Usuario(int id, String nome, String email, String senha) {
         this.id = id;
         this.nome = nome;
