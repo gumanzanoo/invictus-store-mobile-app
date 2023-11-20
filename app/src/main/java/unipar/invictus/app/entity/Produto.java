@@ -11,7 +11,7 @@ public class Produto {
     private int id;
 
     @ColumnInfo(name = "cod")
-    private String cod;
+    private int cod;
 
     @ColumnInfo(name = "descricao")
     private String descricao;
@@ -26,7 +26,7 @@ public class Produto {
     }
 
     @Ignore
-    public Produto(int id, String cod, String descricao, double valorUnitario, int qtdEstoque) {
+    public Produto(int id, int cod, String descricao, double valorUnitario, int qtdEstoque) {
         this.id = id;
         this.cod = cod;
         this.descricao = descricao;
@@ -42,11 +42,11 @@ public class Produto {
         this.id = id;
     }
 
-    public String getCod() {
+    public int getCod() {
         return cod;
     }
 
-    public void setCod(String cod) {
+    public void setCod(int cod) {
         this.cod = cod;
     }
 
