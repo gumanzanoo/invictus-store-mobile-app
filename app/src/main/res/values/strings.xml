@@ -1,3 +1,7 @@
 <resources>
+<<<<<<< HEAD
     <string name="app_name">invictus-store</string>
+=======
+    <string name="app_name">invictus</string>
+>>>>>>> a9ea64288d7ecdc78c7511bd81faa9c8f17349b4
 </resources>
