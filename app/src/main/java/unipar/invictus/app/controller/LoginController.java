@@ -1,11 +1,10 @@
 package unipar.invictus.app.controller;
 
-
 import unipar.invictus.app.entity.Usuario;
 import unipar.invictus.app.repository.UsuarioRepository;
 
 public class LoginController {
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
 
     public LoginController(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;

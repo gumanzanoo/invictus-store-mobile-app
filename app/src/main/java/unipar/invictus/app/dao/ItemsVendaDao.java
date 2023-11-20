@@ -7,6 +7,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import java.util.List;
+
 import unipar.invictus.app.entity.ItemsVenda;
 
 @Dao

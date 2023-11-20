@@ -10,7 +10,6 @@ import java.util.List;
 
 import unipar.invictus.app.entity.Cliente;
 
-
 @Dao
 public interface ClienteDao {
     @Insert
