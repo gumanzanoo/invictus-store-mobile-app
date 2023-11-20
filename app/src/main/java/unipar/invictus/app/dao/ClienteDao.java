@@ -26,4 +26,7 @@ public interface ClienteDao {
 
     @Query("SELECT * FROM clientes WHERE id = :id")
     Cliente getById(int id);
+
+    @Query("SELECT * FROM clientes WHERE email = :email")
+    Cliente getByEmail(String email);
 }

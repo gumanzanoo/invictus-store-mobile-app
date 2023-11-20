@@ -37,4 +37,8 @@ public class ClienteRepository {
     public Cliente getById(int id) {
         return clienteDao.getById(id);
     }
+
+    public Cliente getByEmail(String email) {
+        return clienteDao.getByEmail(email);
+    }
 }
