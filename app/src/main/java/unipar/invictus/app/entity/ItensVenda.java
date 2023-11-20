@@ -7,7 +7,7 @@ import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "items_venda",
+@Entity(tableName = "itens_venda",
         foreignKeys = {
                 @ForeignKey(entity = Produto.class,
                         parentColumns = "id",
@@ -20,7 +20,7 @@ import androidx.room.PrimaryKey;
                         onDelete = ForeignKey.CASCADE
                 )},
         indices = {@Index("id_produto"), @Index("id_venda")})
-public class ItemsVenda {
+public class ItensVenda {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -33,11 +33,11 @@ public class ItemsVenda {
     @ColumnInfo(name = "quantidade")
     private int quantidade;
 
-    public ItemsVenda() {
+    public ItensVenda() {
     }
 
     @Ignore
-    public ItemsVenda(int id, int idVenda, int idProduto, int quantidade) {
+    public ItensVenda(int id, int idVenda, int idProduto, int quantidade) {
         this.id = id;
         this.idVenda = idVenda;
         this.idProduto = idProduto;
