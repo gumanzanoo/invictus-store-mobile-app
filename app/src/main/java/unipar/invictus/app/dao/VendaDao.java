@@ -1,29 +1,135 @@
 package unipar.invictus.app.dao;
 
-import androidx.room.Dao;
-import androidx.room.Delete;
-import androidx.room.Insert;
-import androidx.room.Query;
-import androidx.room.Update;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
-import java.util.List;
+import java.util.ArrayList;
 
+import unipar.invictus.app.dao.abstracts.GenericDao;
+import unipar.invictus.app.database.SQLiteDataHelper;
 import unipar.invictus.app.entity.Venda;
 
-@Dao
-public interface VendaDao {
-    @Insert
-    long insert(Venda vendas);
+public class VendaDao implements GenericDao<Venda> {
+    private SQLiteOpenHelper openHelper;
+    private SQLiteDatabase database;
+    private String nomeTabela = "vendas";
+    private String[] colunas = {"id", "clienteId", "valorTotal"};
+    private Context context;
+    private static VendaDao instancia;
 
-    @Update
-    int update(Venda vendas);
+    public static VendaDao getInstancia(Context context) {
+        if (instancia == null) {
+            return instancia = new VendaDao(context);
+        } else {
+            return instancia;
+        }
+    }
 
-    @Delete
-    int delete(Venda vendas);
+    private VendaDao(Context context) {
+        this.context = context;
 
-    @Query("SELECT * FROM vendas")
-    List<Venda> getAll();
+        openHelper = new SQLiteDataHelper(this.context, "InvictusDB",
+                null, 1);
 
-    @Query("SELECT * FROM vendas WHERE id = :id")
-    Venda getById(int id);
+        database = openHelper.getWritableDatabase();
+    }
+
+    @Override
+    public long insert(Venda obj) {
+        try {
+            ContentValues valores = new ContentValues();
+            valores.put(colunas[1], obj.getClienteId());
+            valores.put(colunas[2], obj.getValorTotal());
+
+            return database.insert(nomeTabela, null, valores);
+
+        } catch (SQLException ex) {
+            Log.e("ERRO", "VendaDao.insert(): " + ex.getMessage());
+        }
+        return 0;
+    }
+
+    @Override
+    public long update(Venda obj) {
+        try {
+            ContentValues valores = new ContentValues();
+            valores.put(colunas[1], obj.getClienteId());
+            valores.put(colunas[2], obj.getValorTotal());
+
+            String[] identificador = {String.valueOf(obj.getId())};
+            return database.update(nomeTabela, valores,
+                    colunas[0] + " = ?", identificador);
+
+
+        } catch (SQLException ex) {
+            Log.e("ERRO", "VendaDao.update(): " + ex.getMessage());
+        }
+        return 0;
+    }
+
+    @Override
+    public long delete(Venda obj) {
+        try {
+            String[] identificador = {String.valueOf(obj.getId())};
+            return database.delete(nomeTabela, colunas[0] + " = ?",
+                    identificador);
+
+        } catch (SQLException ex) {
+            Log.e("ERRO", "VendaDao.delete(): " + ex.getMessage());
+        }
+        return 0;
+    }
+
+    @Override
+    public ArrayList<Venda> getAll() {
+        ArrayList<Venda> lista = new ArrayList<>();
+        try {
+            Cursor cursor = database.query(nomeTabela, colunas,
+                    null, null, null,
+                    null, colunas[0]);
+
+            if (cursor.moveToFirst()) {
+                do {
+                    Venda venda = new Venda();
+                    venda.setClienteId(cursor.getInt(1));
+                    venda.setValorTotal(cursor.getDouble(2));
+
+                    lista.add(venda);
+
+                } while (cursor.moveToNext());
+            }
+        } catch (SQLException ex) {
+            Log.e("ERRO", "VendaDao.getAll(): " + ex.getMessage());
+        }
+        return lista;
+    }
+
+    @Override
+    public Venda getById(int id) {
+        try {
+            String[] identificador = {String.valueOf(id)};
+            Cursor cursor = database.query(nomeTabela, colunas,
+                    colunas[0] + " = " + id, null,
+                    null, null, null);
+
+            if (cursor.moveToFirst()) {
+                Venda venda = new Venda();
+                venda.setId(cursor.getInt(0));
+                venda.setClienteId(cursor.getInt(1));
+                venda.setValorTotal(cursor.getDouble(2));
+
+                return venda;
+            }
+
+        } catch (SQLException ex) {
+            Log.e("ERRO", "VendaDao.getById(): " + ex.getMessage());
+        }
+
+        return null;
+    }
 }

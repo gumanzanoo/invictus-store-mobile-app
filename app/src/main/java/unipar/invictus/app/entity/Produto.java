@@ -1,31 +1,19 @@
 package unipar.invictus.app.entity;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
-
-@Entity(tableName = "produtos")
 public class Produto {
-    @PrimaryKey(autoGenerate = true)
     private int id;
 
-    @ColumnInfo(name = "cod")
     private int cod;
 
-    @ColumnInfo(name = "descricao")
     private String descricao;
 
-    @ColumnInfo(name = "valorUnitario")
     private double valorUnitario;
 
-    @ColumnInfo(name = "qtdEstoque")
     private int qtdEstoque;
 
     public Produto() {
     }
 
-    @Ignore
     public Produto(int id, int cod, String descricao, double valorUnitario, int qtdEstoque) {
         this.id = id;
         this.cod = cod;

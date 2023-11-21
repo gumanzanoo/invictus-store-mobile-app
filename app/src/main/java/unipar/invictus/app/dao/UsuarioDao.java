@@ -1,33 +1,139 @@
 package unipar.invictus.app.dao;
 
-import androidx.room.Dao;
-import androidx.room.Delete;
-import androidx.room.Insert;
-import androidx.room.Query;
-import androidx.room.Update;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
-import java.util.List;
+import java.util.ArrayList;
 
+import unipar.invictus.app.dao.abstracts.GenericDao;
+import unipar.invictus.app.database.SQLiteDataHelper;
 import unipar.invictus.app.entity.Usuario;
 
-@Dao
-public interface UsuarioDao {
+public class UsuarioDao implements GenericDao<Usuario> {
+    private SQLiteOpenHelper openHelper;
+    private SQLiteDatabase database;
+    private String nomeTabela = "usuarios";
+    private String[] colunas = {"id", "nome", "email", "senha"};
+    private Context context;
+    private static UsuarioDao instancia;
 
-    @Insert
-    long insert(Usuario usuario);
+    public static UsuarioDao getInstancia(Context context) {
+        if (instancia == null) {
+            return instancia = new UsuarioDao(context);
+        } else {
+            return instancia;
+        }
+    }
 
-    @Update
-    int update(Usuario usuario);
+    private UsuarioDao(Context context) {
+        this.context = context;
 
-    @Delete
-    int delete(Usuario usuario);
+        openHelper = new SQLiteDataHelper(this.context, "InvictusDB",
+                null, 1);
 
-    @Query("SELECT * FROM usuarios")
-    List<Usuario> getAll();
+        database = openHelper.getWritableDatabase();
+    }
 
-    @Query("SELECT * FROM usuarios WHERE id = :id")
-    Usuario getById(int id);
+    @Override
+    public long insert(Usuario obj) {
+        try {
+            ContentValues valores = new ContentValues();
+            valores.put(colunas[1], obj.getNome());
+            valores.put(colunas[2], obj.getEmail());
+            valores.put(colunas[3], obj.getSenha());
 
-    @Query("SELECT * FROM usuarios WHERE email = :email")
-    Usuario getByEmail(String email);
+            return database.insert(nomeTabela, null, valores);
+
+        } catch (SQLException ex) {
+            Log.e("ERRO", "UsuarioDao.insert(): " + ex.getMessage());
+        }
+        return 0;
+    }
+
+    @Override
+    public long update(Usuario obj) {
+        try {
+            ContentValues valores = new ContentValues();
+            valores.put(colunas[1], obj.getNome());
+            valores.put(colunas[2], obj.getEmail());
+            valores.put(colunas[3], obj.getSenha());
+
+            String[] identificador = {String.valueOf(obj.getId())};
+            return database.update(nomeTabela, valores,
+                    colunas[0] + " = ?", identificador);
+
+
+        } catch (SQLException ex) {
+            Log.e("ERRO", "UsuarioDao.update(): " + ex.getMessage());
+        }
+        return 0;
+    }
+
+    @Override
+    public long delete(Usuario obj) {
+        try {
+            String[] identificador = {String.valueOf(obj.getId())};
+            return database.delete(nomeTabela, colunas[0] + " = ?",
+                    identificador);
+
+        } catch (SQLException ex) {
+            Log.e("ERRO", "UsuarioDao.delete(): " + ex.getMessage());
+        }
+        return 0;
+    }
+
+    @Override
+    public ArrayList<Usuario> getAll() {
+        ArrayList<Usuario> lista = new ArrayList<>();
+        try {
+            Cursor cursor = database.query(nomeTabela, colunas,
+                    null, null, null,
+                    null, colunas[0]);
+
+            if (cursor.moveToFirst()) {
+                do {
+                    Usuario usuario = new Usuario();
+                    usuario.setNome(cursor.getString(1));
+                    usuario.setEmail(cursor.getString(2));
+                    usuario.setSenha(cursor.getString(3));
+
+                    lista.add(usuario);
+
+                } while (cursor.moveToNext());
+            }
+        } catch (SQLException ex) {
+            Log.e("ERRO", "UsuarioDao.getAll(): " + ex.getMessage());
+        }
+        return lista;
+    }
+
+    @Override
+    public Usuario getById(int id) {
+        try {
+            String[] identificador = {String.valueOf(id)};
+            Cursor cursor = database.query(nomeTabela, colunas,
+                    colunas[0] + " = " + id, null,
+                    null, null, null);
+
+            if (cursor.moveToFirst()) {
+                Usuario usuario = new Usuario();
+                usuario.setId(cursor.getInt(0));
+                usuario.setNome(cursor.getString(1));
+                usuario.setEmail(cursor.getString(2));
+                usuario.setSenha(cursor.getString(3));
+
+                return usuario;
+            }
+
+        } catch (SQLException ex) {
+            Log.e("ERRO", "UsuarioDao.getById(): " + ex.getMessage());
+        }
+
+        return null;
+    }
 }

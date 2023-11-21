@@ -1,42 +1,21 @@
 package unipar.invictus.app.entity;
 
 import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.Ignore;
-import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "itens_venda",
-        foreignKeys = {
-                @ForeignKey(entity = Produto.class,
-                        parentColumns = "id",
-                        childColumns = "id_produto",
-                        onDelete = ForeignKey.CASCADE
-                ),
-                @ForeignKey(entity = Venda.class,
-                        parentColumns = "id",
-                        childColumns = "id_venda",
-                        onDelete = ForeignKey.CASCADE
-                )},
-        indices = {@Index("id_produto"), @Index("id_venda")})
 public class ItensVenda {
-    @PrimaryKey(autoGenerate = true)
     private int id;
 
-    @ColumnInfo(name = "id_venda")
     private int idVenda;
 
-    @ColumnInfo(name = "id_produto")
     private int idProduto;
 
-    @ColumnInfo(name = "quantidade")
     private int quantidade;
 
     public ItensVenda() {
     }
 
-    @Ignore
     public ItensVenda(int id, int idVenda, int idProduto, int quantidade) {
         this.id = id;
         this.idVenda = idVenda;
