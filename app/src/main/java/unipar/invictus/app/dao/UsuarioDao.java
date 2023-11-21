@@ -134,9 +134,45 @@ public class UsuarioDao implements GenericDao<Usuario> {
     public Usuario getById(int id) {
         try {
             String[] identificador = {String.valueOf(id)};
-            Cursor cursor = database.query(nomeTabela, colunas,
-                    colunas[0] + " = " + id, null,
-                    null, null, null);
+            return retrieveByCursor(0, identificador, null, null, null);
+        } catch (SQLException ex) {
+            Log.e("ERRO", "ClienteDao.getById(): " + ex.getMessage());
+        }
+
+        return null;
+    }
+
+    public Usuario getByEmail(String email) {
+        try {
+            String[] identificador = new String[]{email};
+            return retrieveByCursor(2, identificador, null, null, null);
+        } catch (SQLException ex) {
+            Log.e("ERRO", "ClienteDao.getByEmail(): " + ex.getMessage());
+        }
+
+        return null;
+    }
+
+    private @Nullable Usuario retrieveByCursor(
+            int colNum,
+            String[]params,
+            String groupBy,
+            String having,
+            String orderBy
+    ) {
+        try {
+            String selection = colunas[colNum] + " = ?";
+            Log.i("Invictus", selection);
+            Log.i("Invictus", params[0]);
+            Cursor cursor = database.query(
+                    nomeTabela,
+                    colunas,
+                    selection,
+                    params,
+                    groupBy,
+                    having,
+                    orderBy
+            );
 
             if (cursor.moveToFirst()) {
                 Usuario usuario = new Usuario();
@@ -145,11 +181,13 @@ public class UsuarioDao implements GenericDao<Usuario> {
                 usuario.setEmail(cursor.getString(2));
                 usuario.setSenha(cursor.getString(3));
 
+                cursor.close();
+
                 return usuario;
             }
 
         } catch (SQLException ex) {
-            Log.e("ERRO", "UsuarioDao.getById(): " + ex.getMessage());
+            Log.e("ERRO", "ClienteDao.retrieveByCursor(): " + ex.getMessage());
         }
 
         return null;

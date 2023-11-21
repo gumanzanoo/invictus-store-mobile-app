@@ -21,4 +21,8 @@ public class Response {
     public static Response response(String status, String message, Object content) {
         return new Response(status, message, content);
     }
+
+    public String getMessage() {
+        return message;
+    }
 }

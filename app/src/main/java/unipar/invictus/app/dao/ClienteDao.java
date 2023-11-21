@@ -134,7 +134,7 @@ public class ClienteDao implements GenericDao<Cliente> {
     public Cliente getById(int id) {
         try {
             String[] identificador = {String.valueOf(id)};
-            return retrieveByCursor(3, identificador, null, null, null);
+            return retrieveByCursor(0, identificador, null, null, null);
         } catch (SQLException ex) {
             Log.e("ERRO", "ClienteDao.getById(): " + ex.getMessage());
         }
@@ -145,7 +145,7 @@ public class ClienteDao implements GenericDao<Cliente> {
     public Cliente getByEmail(String email) {
         try {
             String[] identificador = new String[]{email};
-            return retrieveByCursor(3, identificador, null, null, null);
+            return retrieveByCursor(2, identificador, null, null, null);
         } catch (SQLException ex) {
             Log.e("ERRO", "ClienteDao.getByEmail(): " + ex.getMessage());
         }
@@ -202,5 +202,4 @@ public class ClienteDao implements GenericDao<Cliente> {
 
         return null;
     }
-
 }
