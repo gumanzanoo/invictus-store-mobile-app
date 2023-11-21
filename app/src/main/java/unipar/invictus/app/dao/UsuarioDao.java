@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 
 import unipar.invictus.app.dao.abstracts.GenericDao;
@@ -30,7 +32,7 @@ public class UsuarioDao implements GenericDao<Usuario> {
         }
     }
 
-    private UsuarioDao(Context context) {
+    public UsuarioDao(Context context) {
         this.context = context;
 
         openHelper = new SQLiteDataHelper(this.context, "InvictusDB",
@@ -40,19 +42,35 @@ public class UsuarioDao implements GenericDao<Usuario> {
     }
 
     @Override
-    public long insert(Usuario obj) {
+    public @Nullable Usuario insert(Usuario obj) {
         try {
             ContentValues valores = new ContentValues();
             valores.put(colunas[1], obj.getNome());
             valores.put(colunas[2], obj.getEmail());
             valores.put(colunas[3], obj.getSenha());
 
-            return database.insert(nomeTabela, null, valores);
+            long insertResult = database.insert(nomeTabela, null, valores);
 
+            if (insertResult != -1) {
+                Cursor cursor = database.query(
+                        nomeTabela, colunas, "id = " + insertResult, null, null, null, null);
+
+                if (cursor.moveToFirst()) {
+                    Usuario usuario = new Usuario();
+                    usuario.setId(cursor.getInt(0));
+                    usuario.setNome(cursor.getString(1));
+                    usuario.setEmail(cursor.getString(2));
+
+                    cursor.close();
+
+                    return usuario;
+                }
+            }
         } catch (SQLException ex) {
             Log.e("ERRO", "UsuarioDao.insert(): " + ex.getMessage());
         }
-        return 0;
+
+        return null;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package unipar.invictus.app.entity;
 
+import androidx.annotation.NonNull;
+
 public class Usuario {
     private int id;
 
@@ -49,5 +51,16 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                '}';
     }
 }

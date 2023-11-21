@@ -1,5 +1,7 @@
 package unipar.invictus.app.entity;
 
+import androidx.annotation.NonNull;
+
 public class Venda {
     private int id;
 
@@ -38,5 +40,15 @@ public class Venda {
 
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Venda{" +
+                "id=" + id +
+                ", clienteId=" + clienteId +
+                ", valorTotal=" + valorTotal +
+                '}';
     }
 }

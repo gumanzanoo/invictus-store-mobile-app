@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 
 import unipar.invictus.app.dao.abstracts.GenericDao;
@@ -30,7 +32,7 @@ public class ProdutoDao implements GenericDao<Produto> {
         }
     }
 
-    private ProdutoDao(Context context) {
+    public ProdutoDao(Context context) {
         this.context = context;
 
         openHelper = new SQLiteDataHelper(this.context, "InvictusDB",
@@ -40,7 +42,7 @@ public class ProdutoDao implements GenericDao<Produto> {
     }
 
     @Override
-    public long insert(Produto obj) {
+    public @Nullable Produto insert(Produto obj) {
         try {
             ContentValues valores = new ContentValues();
             valores.put(colunas[1], obj.getCod());
@@ -48,12 +50,28 @@ public class ProdutoDao implements GenericDao<Produto> {
             valores.put(colunas[3], obj.getValorUnitario());
             valores.put(colunas[4], obj.getQtdEstoque());
 
-            return database.insert(nomeTabela, null, valores);
+            long insertResult = database.insert(nomeTabela, null, valores);
+            if (insertResult != -1) {
+                Cursor cursor = database.query(
+                        nomeTabela, colunas, "id = " + insertResult, null, null, null, null);
 
+                if (cursor.moveToFirst()) {
+                    Produto produto = new Produto();
+                    produto.setId(cursor.getInt(0));
+                    produto.setCod(cursor.getInt(1));
+                    produto.setDescricao(cursor.getString(2));
+                    produto.setValorUnitario(cursor.getDouble(3));
+                    produto.setQtdEstoque(cursor.getInt(4));
+
+                    cursor.close();
+
+                    return produto;
+                }
+            }
         } catch (SQLException ex) {
             Log.e("ERRO", "ProdutoDao.insert(): " + ex.getMessage());
         }
-        return 0;
+        return null;
     }
 
     @Override

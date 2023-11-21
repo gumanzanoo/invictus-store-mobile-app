@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 
 import unipar.invictus.app.dao.abstracts.GenericDao;
@@ -30,7 +32,7 @@ public class ClienteDao implements GenericDao<Cliente> {
         }
     }
 
-    private ClienteDao(Context context) {
+    public ClienteDao(Context context) {
         this.context = context;
 
         openHelper = new SQLiteDataHelper(this.context, "InvictusDB",
@@ -40,19 +42,35 @@ public class ClienteDao implements GenericDao<Cliente> {
     }
 
     @Override
-    public long insert(Cliente obj) {
+    public @Nullable Cliente insert(Cliente obj) {
         try {
             ContentValues valores = new ContentValues();
             valores.put(colunas[1], obj.getNome());
             valores.put(colunas[2], obj.getEmail());
             valores.put(colunas[3], obj.getDocumento());
+            long insertResult = database.insert(nomeTabela, null, valores);
 
-            return database.insert(nomeTabela, null, valores);
+            if (insertResult != -1) {
+                Cursor cursor = database.query(
+                        nomeTabela, colunas, "id = " + insertResult, null, null, null, null);
 
+                if (cursor.moveToFirst()) {
+                    Cliente clienteInserido = new Cliente();
+                    clienteInserido.setId(cursor.getInt(0));
+                    clienteInserido.setNome(cursor.getString(1));
+                    clienteInserido.setEmail(cursor.getString(2));
+                    clienteInserido.setDocumento(cursor.getString(3));
+
+                    cursor.close();
+
+                    return clienteInserido;
+                }
+            }
         } catch (SQLException ex) {
             Log.e("ERRO", "ClienteDao.insert(): " + ex.getMessage());
         }
-        return 0;
+
+        return null;
     }
 
     @Override
@@ -116,24 +134,73 @@ public class ClienteDao implements GenericDao<Cliente> {
     public Cliente getById(int id) {
         try {
             String[] identificador = {String.valueOf(id)};
-            Cursor cursor = database.query(nomeTabela, colunas,
-                    colunas[0] + " = " + id, null,
-                    null, null, null);
-
-            if (cursor.moveToFirst()) {
-                Cliente aluno = new Cliente();
-                aluno.setId(cursor.getInt(0));
-                aluno.setNome(cursor.getString(1));
-                aluno.setEmail(cursor.getString(2));
-                aluno.setDocumento(cursor.getString(3));
-
-                return aluno;
-            }
-
+            return retrieveByCursor(3, identificador, null, null, null);
         } catch (SQLException ex) {
             Log.e("ERRO", "ClienteDao.getById(): " + ex.getMessage());
         }
 
         return null;
     }
+
+    public Cliente getByEmail(String email) {
+        try {
+            String[] identificador = new String[]{email};
+            return retrieveByCursor(3, identificador, null, null, null);
+        } catch (SQLException ex) {
+            Log.e("ERRO", "ClienteDao.getByEmail(): " + ex.getMessage());
+        }
+
+        return null;
+    }
+
+    public @Nullable Cliente getByDocumento(String documento) {
+        try {
+            String[] identificador = new String[]{documento};
+            return retrieveByCursor(3, identificador, null, null, null);
+        } catch (SQLException ex) {
+            Log.e("ERRO", "ClienteDao.getByDocumento(): " + ex.getMessage());
+        }
+
+        return null;
+    }
+
+    private @Nullable Cliente retrieveByCursor(
+            int colNum,
+            String[] params,
+            String groupBy,
+            String having,
+            String orderBy
+    ) {
+        try {
+            String selection = colunas[colNum] + " = ?";
+
+            Cursor cursor = database.query(
+                    nomeTabela,
+                    colunas,
+                    selection,
+                    params,
+                    groupBy,
+                    having,
+                    orderBy
+            );
+
+            if (cursor.moveToFirst()) {
+                Cliente cliente = new Cliente();
+                cliente.setId(cursor.getInt(0));
+                cliente.setNome(cursor.getString(1));
+                cliente.setEmail(cursor.getString(2));
+                cliente.setDocumento(cursor.getString(3));
+
+                cursor.close();
+
+                return cliente;
+            }
+
+        } catch (SQLException ex) {
+            Log.e("ERRO", "ClienteDao.retrieveByCursor(): " + ex.getMessage());
+        }
+
+        return null;
+    }
+
 }

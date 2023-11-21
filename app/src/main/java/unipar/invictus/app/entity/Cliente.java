@@ -1,5 +1,7 @@
 package unipar.invictus.app.entity;
 
+import androidx.annotation.NonNull;
+
 public class Cliente {
     private int id;
 
@@ -49,6 +51,17 @@ public class Cliente {
 
     public void setDocumento(String documento) {
         this.documento = documento;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Cliente {" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", documento='" + documento + '\'' +
+                '}';
     }
 }
 

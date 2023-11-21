@@ -8,10 +8,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 
 import unipar.invictus.app.dao.abstracts.GenericDao;
 import unipar.invictus.app.database.SQLiteDataHelper;
+import unipar.invictus.app.entity.Cliente;
 import unipar.invictus.app.entity.Venda;
 
 public class VendaDao implements GenericDao<Venda> {
@@ -40,18 +43,34 @@ public class VendaDao implements GenericDao<Venda> {
     }
 
     @Override
-    public long insert(Venda obj) {
+    public @Nullable Venda insert(Venda obj) {
         try {
             ContentValues valores = new ContentValues();
             valores.put(colunas[1], obj.getClienteId());
             valores.put(colunas[2], obj.getValorTotal());
 
-            return database.insert(nomeTabela, null, valores);
+            long insertResult = database.insert(nomeTabela, null, valores);
+
+            if (insertResult != -1) {
+                Cursor cursor = database.query(
+                        nomeTabela, colunas, "id = " + insertResult, null, null, null, null);
+
+                if (cursor.moveToFirst()) {
+                    Venda venda = new Venda();
+                    venda.setId(cursor.getInt(0));
+                    venda.setClienteId(cursor.getInt(1));
+                    venda.setValorTotal(cursor.getDouble(2));
+
+                    cursor.close();
+
+                    return venda;
+                }
+            }
 
         } catch (SQLException ex) {
             Log.e("ERRO", "VendaDao.insert(): " + ex.getMessage());
         }
-        return 0;
+        return null;
     }
 
     @Override

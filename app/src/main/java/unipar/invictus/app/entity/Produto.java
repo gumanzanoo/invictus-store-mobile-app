@@ -1,5 +1,7 @@
 package unipar.invictus.app.entity;
 
+import androidx.annotation.NonNull;
+
 public class Produto {
     private int id;
 
@@ -60,6 +62,18 @@ public class Produto {
 
     public void setQtdEstoque(int qtdEstoque) {
         this.qtdEstoque = qtdEstoque;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "id=" + id +
+                ", cod=" + cod +
+                ", descricao='" + descricao + '\'' +
+                ", valorUnitario=" + valorUnitario +
+                ", qtdEstoque=" + qtdEstoque +
+                '}';
     }
 }
 

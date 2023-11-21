@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 
 import unipar.invictus.app.dao.abstracts.GenericDao;
@@ -30,7 +32,7 @@ public class ItensVendaDao implements GenericDao<ItensVenda> {
         }
     }
 
-    private ItensVendaDao(Context context) {
+    public ItensVendaDao(Context context) {
         this.context = context;
 
         openHelper = new SQLiteDataHelper(this.context, "InvictusDB",
@@ -40,19 +42,34 @@ public class ItensVendaDao implements GenericDao<ItensVenda> {
     }
 
     @Override
-    public long insert(ItensVenda obj) {
+    public @Nullable ItensVenda insert(ItensVenda obj) {
         try {
             ContentValues valores = new ContentValues();
             valores.put(colunas[1], obj.getIdVenda());
             valores.put(colunas[2], obj.getIdProduto());
             valores.put(colunas[3], obj.getQuantidade());
 
-            return database.insert(nomeTabela, null, valores);
+            long insertResult = database.insert(nomeTabela, null, valores);
+            if (insertResult != -1) {
+                Cursor cursor = database.query(
+                        nomeTabela, colunas, "id = " + insertResult, null, null, null, null);
 
+                if (cursor.moveToFirst()) {
+                    ItensVenda itensVenda = new ItensVenda();
+                    itensVenda.setId(cursor.getInt(0));
+                    itensVenda.setIdVenda(cursor.getInt(1));
+                    itensVenda.setIdProduto(cursor.getInt(2));
+                    itensVenda.setQuantidade(cursor.getInt(3));
+
+                    cursor.close();
+
+                    return itensVenda;
+                }
+            }
         } catch (SQLException ex) {
             Log.e("ERRO", "ItensVendaDao.insert(): " + ex.getMessage());
         }
-        return 0;
+        return null;
     }
 
     @Override

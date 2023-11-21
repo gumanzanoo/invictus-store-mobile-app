@@ -1,8 +1,6 @@
 package unipar.invictus.app.entity;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
+import androidx.annotation.NonNull;
 
 public class ItensVenda {
     private int id;
@@ -53,5 +51,16 @@ public class ItensVenda {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "ItensVenda{" +
+                "id=" + id +
+                ", idVenda=" + idVenda +
+                ", idProduto=" + idProduto +
+                ", quantidade=" + quantidade +
+                '}';
     }
 }

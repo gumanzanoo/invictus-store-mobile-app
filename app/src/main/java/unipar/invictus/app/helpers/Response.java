@@ -6,12 +6,19 @@ public class Response {
     public String status;
     public String message;
 
-    public Response(String status, String message) {
+    public Object content;
+
+    public Response(String status, String message, Object content) {
         this.status = status;
         this.message = message;
+        this.content = content;
     }
 
     public static Response response(String status, String message) {
-        return new Response(status, message);
+        return new Response(status, message, null);
+    }
+
+    public static Response response(String status, String message, Object content) {
+        return new Response(status, message, content);
     }
 }
