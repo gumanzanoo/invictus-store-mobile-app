@@ -1,4 +1,4 @@
-package unipar.invictus.app.config;
+package unipar.invictus.app.helpers;
 
 public class Response {
     public static final String SUCCESS = "success";

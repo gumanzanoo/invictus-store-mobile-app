@@ -1,6 +1,6 @@
 package unipar.invictus.app.controller;
 
-import unipar.invictus.app.config.Response;
+import unipar.invictus.app.helpers.Response;
 import unipar.invictus.app.entity.Cliente;
 import unipar.invictus.app.repository.ClienteRepository;
 

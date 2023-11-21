@@ -26,4 +26,10 @@ public interface ProdutoDao {
 
     @Query("SELECT * FROM produtos WHERE id = :id")
     Produto getById(int id);
+
+    @Query("SELECT * FROM produtos WHERE descricao = :descricao")
+    Produto getByDescricao(String descricao);
+
+    @Query("SELECT * FROM produtos WHERE cod = :codigo")
+    Produto getByCodigo(int codigo);
 }

@@ -37,4 +37,12 @@ public class ProdutoRepository {
     public Produto getById(int id) {
         return produtoDao.getById(id);
     }
+
+    public Produto getByDescricao(String descricao) {
+        return produtoDao.getByDescricao(descricao);
+    }
+
+    public Produto getByCodigo(int codigo) {
+        return produtoDao.getByCodigo(codigo);
+    }
 }
