@@ -8,39 +8,4 @@
     android:orientation="vertical"
     tools:context=".view.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:text="INVICTUS"
-        android:textSize="50sp" />
-
-
-    <EditText
-        android:id="@+id/edEmailUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="65sp"
-        android:layout_marginEnd="65sp"
-        android:gravity="center"
-        android:hint="Infome seu e-mail" />
-
-    <EditText
-        android:id="@+id/edSenhaUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="65sp"
-        android:layout_marginEnd="65sp"
-        android:gravity="center"
-        android:hint="Informe sua senha" />
-
-    <Button
-        android:id="@+id/btLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="ENTRAR" />
-
-
 </LinearLayout>

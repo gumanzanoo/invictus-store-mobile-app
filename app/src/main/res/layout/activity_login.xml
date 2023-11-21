@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    tools:context=".view.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="35dp"
-        android:text="Cadastro de usuários"
-        android:textSize="30dp" />
+        android:layout_margin="10dp"
+        android:text="INVICTUS"
+        android:textSize="50sp" />
+
 
     <EditText
         android:id="@+id/edEmailUser"
@@ -18,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="65sp"
         android:layout_marginEnd="65sp"
-        android:layout_marginBottom="11dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:hint="Infome seu e-mail" />
 
@@ -32,24 +36,13 @@
         android:gravity="center"
         android:hint="Informe sua senha" />
 
-    <EditText
-        android:id="@+id/edSenhaConfirm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
-        android:layout_marginEnd="65dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
-        android:hint="Confirme sua senha" />
-
     <Button
-        android:id="@+id/btSalvar"
+        android:id="@+id/btLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="75dp"
-        android:layout_marginTop="35dp"
         android:layout_marginEnd="75dp"
-        android:text="Salvar"
-        android:textSize="15dp" />
+        android:text="ENTRAR" />
+
 
 </LinearLayout>

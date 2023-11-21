@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="35dp"
+        android:text="Cadastro de produtos"
+        android:textSize="30dp" />
+
+    <EditText
+        android:id="@+id/edDescProd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="65sp"
+        android:layout_marginEnd="65sp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:hint="Descrição" />
+
+    <EditText
+        android:id="@+id/edVlrProd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="65dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:hint="Informe o valor" />
+
+    <EditText
+        android:id="@+id/edQtdProd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="65dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:hint="Quantia em estoque" />
+
+    <Button
+        android:id="@+id/btSalvar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="75dp"
+        android:text="Salvar"
+        android:textSize="15dp" />
+
+
+</LinearLayout>
