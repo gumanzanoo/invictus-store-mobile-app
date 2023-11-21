@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import unipar.invictus.app.dao.abstracts.GenericDao;
 import unipar.invictus.app.database.SQLiteDataHelper;
+import unipar.invictus.app.entity.Cliente;
 import unipar.invictus.app.entity.Produto;
 
 public class ProdutoDao implements GenericDao<Produto> {
@@ -137,9 +138,44 @@ public class ProdutoDao implements GenericDao<Produto> {
     public Produto getById(int id) {
         try {
             String[] identificador = {String.valueOf(id)};
-            Cursor cursor = database.query(nomeTabela, colunas,
-                    colunas[0] + " = " + id, null,
-                    null, null, null);
+            return retrieveByCursor(0, identificador, null, null, null);
+        } catch (SQLException ex) {
+            Log.e("ERRO", "ProdutoDao.getById(): " + ex.getMessage());
+        }
+
+        return null;
+    }
+
+    public Produto getByCod(int cod) {
+        try {
+            String[] identificador = {String.valueOf(cod)};
+            return retrieveByCursor(2, identificador, null, null, null);
+        } catch (SQLException ex) {
+            Log.e("ERRO", "ProdutoDao.getByCod(): " + ex.getMessage());
+        }
+
+        return null;
+    }
+
+    private @Nullable Produto retrieveByCursor(
+            int colNum,
+            String[] params,
+            String groupBy,
+            String having,
+            String orderBy
+    ) {
+        try {
+            String selection = colunas[colNum] + " = ?";
+
+            Cursor cursor = database.query(
+                    nomeTabela,
+                    colunas,
+                    selection,
+                    params,
+                    groupBy,
+                    having,
+                    orderBy
+            );
 
             if (cursor.moveToFirst()) {
                 Produto produto = new Produto();
@@ -149,11 +185,13 @@ public class ProdutoDao implements GenericDao<Produto> {
                 produto.setValorUnitario(cursor.getDouble(3));
                 produto.setQtdEstoque(cursor.getInt(4));
 
+                cursor.close();
+
                 return produto;
             }
 
         } catch (SQLException ex) {
-            Log.e("ERRO", "ProdutoDao.getById(): " + ex.getMessage());
+            Log.e("ERRO", "ProdutoDao.retrieveByCursor(): " + ex.getMessage());
         }
 
         return null;
