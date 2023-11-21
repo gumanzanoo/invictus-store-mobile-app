@@ -15,7 +15,7 @@ public class LoginController {
         Usuario savedUser = usuarioRepository.getByEmail(email);
 
         if (savedUser.getEmail().equals(email)) {
-            return Response.response(Response.BAD_REQUEST,
+            return Response.response(Response.SUCCESS,
                     "Já existe um usuário cadastrado com este e-mail");
         }
 
@@ -27,11 +27,11 @@ public class LoginController {
         long userRegistered = usuarioRepository.insert(usuario);
 
         if (userRegistered > 0) {
-            return Response.response(Response.CREATED,
+            return Response.response(Response.SUCCESS,
                     "Usuário cadastrado com sucesso");
         }
 
-        return Response.response(Response.INTERNAL_SERVER_ERROR,
+        return Response.response(Response.ERROR,
                 "Não foi possível cadastrar o usuário");
     }
 
@@ -39,16 +39,16 @@ public class LoginController {
         Usuario usuario = usuarioRepository.getByEmail(email);
 
         if (usuario == null) {
-            return Response.response(Response.NOT_FOUND,
+            return Response.response(Response.ERROR,
                     "Este email não está cadastrado.");
         }
 
         if (!usuario.getSenha().equals(senha)) {
-            return Response.response(Response.BAD_REQUEST,
+            return Response.response(Response.ERROR,
                     "Senha incorreta.");
         }
 
-        return Response.response(Response.OK,
+        return Response.response(Response.SUCCESS,
                 "Usuário autenticado com sucesso.");
     }
 }

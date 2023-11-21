@@ -4,12 +4,12 @@ import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
 import unipar.invictus.app.dao.ClienteDao;
-import unipar.invictus.app.dao.ItemsVendaDao;
+import unipar.invictus.app.dao.ItensVendaDao;
 import unipar.invictus.app.dao.ProdutoDao;
 import unipar.invictus.app.dao.UsuarioDao;
 import unipar.invictus.app.dao.VendaDao;
 import unipar.invictus.app.entity.Cliente;
-import unipar.invictus.app.entity.ItemsVenda;
+import unipar.invictus.app.entity.ItensVenda;
 import unipar.invictus.app.entity.Produto;
 import unipar.invictus.app.entity.Usuario;
 import unipar.invictus.app.entity.Venda;
@@ -19,7 +19,7 @@ import unipar.invictus.app.entity.Venda;
         Produto.class,
         Usuario.class,
         Venda.class,
-        ItemsVenda.class
+        ItensVenda.class
 }, version = 1, exportSchema = false)
 
 public abstract class InvictusDatabase extends RoomDatabase {
@@ -31,5 +31,5 @@ public abstract class InvictusDatabase extends RoomDatabase {
 
     public abstract VendaDao vendaDao();
 
-    public abstract ItemsVendaDao itemsVendaDao();
+    public abstract ItensVendaDao itensVendaDao();
 }
