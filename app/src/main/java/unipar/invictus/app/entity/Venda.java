@@ -2,6 +2,8 @@ package unipar.invictus.app.entity;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
+
 public class Venda {
     private int id;
 
@@ -9,13 +11,16 @@ public class Venda {
 
     private double valorTotal;
 
+    private ArrayList<ItensVenda> itensVenda;
+
     public Venda() {
     }
 
-    public Venda(int id, int clienteId, double valorTotal) {
+    public Venda(int id, int clienteId, double valorTotal, ArrayList<ItensVenda> itensVenda) {
         this.id = id;
         this.clienteId = clienteId;
         this.valorTotal = valorTotal;
+        this.itensVenda = itensVenda;
     }
 
     public int getId() {
@@ -40,6 +45,14 @@ public class Venda {
 
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    public ArrayList<ItensVenda> getItensVenda() {
+        return itensVenda;
+    }
+
+    public void setItensVenda(ArrayList<ItensVenda> itensVenda) {
+        this.itensVenda = itensVenda;
     }
 
     @NonNull

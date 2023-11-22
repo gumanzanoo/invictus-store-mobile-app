@@ -33,7 +33,7 @@ public class VendaDao implements GenericDao<Venda> {
         }
     }
 
-    private VendaDao(Context context) {
+    public VendaDao(Context context) {
         this.context = context;
 
         openHelper = new SQLiteDataHelper(this.context, "InvictusDB",

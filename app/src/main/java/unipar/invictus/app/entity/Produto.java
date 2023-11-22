@@ -13,15 +13,18 @@ public class Produto {
 
     private int qtdEstoque;
 
+    private int quantidadeVendida;
+
     public Produto() {
     }
 
-    public Produto(int id, int cod, String descricao, double valorUnitario, int qtdEstoque) {
+    public Produto(int id, int cod, String descricao, double valorUnitario, int qtdEstoque, int quantidadeVendida) {
         this.id = id;
         this.cod = cod;
         this.descricao = descricao;
         this.valorUnitario = valorUnitario;
         this.qtdEstoque = qtdEstoque;
+        this.quantidadeVendida = quantidadeVendida;
     }
 
     public int getId() {
@@ -62,6 +65,14 @@ public class Produto {
 
     public void setQtdEstoque(int qtdEstoque) {
         this.qtdEstoque = qtdEstoque;
+    }
+
+    public int getQuantidadeVenda() {
+        return quantidadeVendida;
+    }
+
+    public void setQuantidadeVenda(int quantidadeComprada) {
+        this.quantidadeVendida = quantidadeComprada;
     }
 
     @NonNull
