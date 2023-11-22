@@ -1,4 +1,4 @@
-package unipar.invictus.view;
+package unipar.invictus.resources.view;
 
 import android.os.Bundle;
 import android.widget.Button;

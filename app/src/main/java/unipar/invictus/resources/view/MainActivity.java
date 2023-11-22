@@ -1,4 +1,4 @@
-package unipar.invictus.view;
+package unipar.invictus.resources.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,25 +24,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Context context = this;
-
-        VendaController vendaController = new VendaController(this);
-
-        ProdutoController produtoController = new ProdutoController(this);
-
-        Produto produto1 = produtoController.getById(2).getContent(Produto.class);
-        produto1.setQuantidadeVenda(1);
-        produtoController.update(produto1);
-
-        Produto produto2 = produtoController.getById(2).getContent(Produto.class);
-        produto2.setQuantidadeVenda(3);
-        produtoController.update(produto2);
-
-        ArrayList<Produto> produtos = new ArrayList<>();
-        produtos.add(produto1);
-        produtos.add(produto2);
-
-        Response<Venda> response = vendaController.create(2, produtos);
-        Log.e("Response", response.getMessage());
     }
 }

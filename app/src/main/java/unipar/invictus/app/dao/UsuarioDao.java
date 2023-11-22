@@ -12,11 +12,11 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
-import unipar.invictus.app.dao.abstracts.GenericDao;
+import unipar.invictus.app.dao.abstracts.IGenericDao;
 import unipar.invictus.app.database.SQLiteDataHelper;
 import unipar.invictus.app.entity.Usuario;
 
-public class UsuarioDao implements GenericDao<Usuario> {
+public class UsuarioDao implements IGenericDao<Usuario> {
     private SQLiteOpenHelper openHelper;
     private SQLiteDatabase database;
     private String nomeTabela = "usuarios";
