@@ -5,44 +5,63 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:orientation="vertical"
+    android:background="#112D4E"
     tools:context=".view.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="10dp"
         android:text="INVICTUS"
-        android:textSize="50sp" />
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        android:typeface="serif"
+        android:layout_marginTop="-100dp"
+        android:layout_marginBottom="75dp"
+        />
 
 
     <EditText
         android:id="@+id/edEmailUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="65sp"
-        android:layout_marginEnd="65sp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="45sp"
+        android:layout_marginEnd="45sp"
+        android:paddingBottom="10dp"
+        android:paddingTop ="10dp"
         android:gravity="center"
-        android:hint="Infome seu e-mail" />
+        android:hint="Insira seu Email"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/edit_text_rounded_bg" />
 
     <EditText
         android:id="@+id/edSenhaUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
-        android:layout_marginEnd="65dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="45sp"
+        android:layout_marginEnd="45sp"
+        android:paddingBottom="10dp"
+        android:paddingTop ="10dp"
         android:gravity="center"
-        android:hint="Informe sua senha" />
+        android:hint="Insira sua Senha"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/edit_text_rounded_bg" />
+
 
     <Button
         android:id="@+id/btLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="75dp"
-        android:layout_marginEnd="75dp"
-        android:text="ENTRAR" />
+        android:layout_marginStart="110dp"
+        android:layout_marginEnd="110dp"
+        android:text="ENTRAR"
+        android:textSize="20sp"
+        android:paddingBottom="10dp"
+        android:paddingTop ="10dp"
+        android:backgroundTint="#6A9DDB"
+        />
 
 
 </LinearLayout>
