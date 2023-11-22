@@ -1,67 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    android:orientation="vertical"
-    android:background="#112D4E"
-    tools:context=".resources.view.MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="INVICTUS"
-        android:textColor="@color/white"
-        android:textSize="50sp"
-        android:typeface="serif"
-        android:layout_marginTop="-100dp"
-        android:layout_marginBottom="75dp"
-        />
-
+    tools:context=".resources.view.LoginActivity">
 
     <EditText
-        android:id="@+id/edEmailUser"
+        android:id="@+id/edEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45sp"
-        android:layout_marginEnd="45sp"
-        android:paddingBottom="10dp"
-        android:paddingTop ="10dp"
-        android:gravity="center"
-        android:hint="Insira seu Email"
-        android:textSize="20sp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/edit_text_rounded_bg" />
+        android:layout_marginTop="16dp"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/edSenhaUser"
+        android:id="@+id/edSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45sp"
-        android:layout_marginEnd="45sp"
-        android:paddingBottom="10dp"
-        android:paddingTop ="10dp"
-        android:gravity="center"
-        android:hint="Insira sua Senha"
-        android:textSize="20sp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/edit_text_rounded_bg" />
-
+        android:layout_below="@+id/edEmail"
+        android:layout_marginTop="8dp"
+        android:hint="Senha"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/btLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="110dp"
-        android:layout_marginEnd="110dp"
-        android:text="ENTRAR"
-        android:textSize="20sp"
-        android:paddingBottom="10dp"
-        android:paddingTop ="10dp"
-        android:backgroundTint="#6A9DDB"
-        />
+        android:layout_below="@+id/edSenha"
+        android:layout_marginTop="16dp"
+        android:text="Login" />
 
 
-</LinearLayout>
+    <Button
+        android:id="@+id/btCadastro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btLogin"
+        android:layout_marginTop="16dp"
+        android:text="Cadastrar" />
+
+    <TextView
+        android:id="@+id/tvErro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btLogin"
+        android:layout_marginTop="16dp"
+        android:text=""
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone" />
+
+</RelativeLayout>

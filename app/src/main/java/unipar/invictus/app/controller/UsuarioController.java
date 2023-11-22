@@ -1,6 +1,7 @@
 package unipar.invictus.app.controller;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -59,7 +60,7 @@ public class UsuarioController {
                 "Usuários encontrados", usuarios);
     }
 
-    public Response<String> cadastro(String nome, String email, String senha) {
+    public Response<String> cadastrarUsuario(String nome, String email, String senha) {
         if (usuarioExistsByEmail(email)) {
             return Response.response(Response.ERROR,
                     "Já existe um usuário cadastrado com este e-mail");

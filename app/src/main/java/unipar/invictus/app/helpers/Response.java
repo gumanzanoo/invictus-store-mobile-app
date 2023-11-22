@@ -34,6 +34,10 @@ public class Response<T> {
         return message;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
     public <U> U getContent(Class<U> type) {
         if (type.isInstance(content)) {
             return type.cast(content);

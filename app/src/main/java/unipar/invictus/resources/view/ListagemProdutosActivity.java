@@ -1,4 +1,4 @@
 package unipar.invictus.resources.view;
 
-public class Login {
+public class ListagemProdutosActivity {
 }
