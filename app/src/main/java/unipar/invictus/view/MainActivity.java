@@ -9,9 +9,13 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import unipar.invictus.R;
+import unipar.invictus.app.controller.ClienteController;
+import unipar.invictus.app.controller.ProdutoController;
 import unipar.invictus.app.controller.VendaController;
 import unipar.invictus.app.dao.ProdutoDao;
+import unipar.invictus.app.entity.Cliente;
 import unipar.invictus.app.entity.Produto;
+import unipar.invictus.app.entity.Venda;
 import unipar.invictus.app.helpers.Response;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,13 +28,21 @@ public class MainActivity extends AppCompatActivity {
 
         VendaController vendaController = new VendaController(this);
 
-        ArrayList<Produto> produtos = new ArrayList<>();
-        ProdutoDao produtoDao = new ProdutoDao(this);
-        produtos.add(produtoDao.getById(1));
-        produtos.add(produtoDao.getById(2));
-        produtos.add(produtoDao.getById(4));
+        ProdutoController produtoController = new ProdutoController(this);
 
-        Response response = vendaController.create(1, produtos);
+        Produto produto1 = produtoController.getById(2).getContent(Produto.class);
+        produto1.setQuantidadeVenda(1);
+        produtoController.update(produto1);
+
+        Produto produto2 = produtoController.getById(2).getContent(Produto.class);
+        produto2.setQuantidadeVenda(3);
+        produtoController.update(produto2);
+
+        ArrayList<Produto> produtos = new ArrayList<>();
+        produtos.add(produto1);
+        produtos.add(produto2);
+
+        Response<Venda> response = vendaController.create(2, produtos);
         Log.e("Response", response.getMessage());
     }
 }

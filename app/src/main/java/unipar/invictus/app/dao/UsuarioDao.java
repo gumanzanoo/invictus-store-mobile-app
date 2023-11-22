@@ -74,7 +74,7 @@ public class UsuarioDao implements GenericDao<Usuario> {
     }
 
     @Override
-    public long update(Usuario obj) {
+    public @Nullable Usuario update(Usuario obj) {
         try {
             ContentValues valores = new ContentValues();
             valores.put(colunas[1], obj.getNome());
@@ -82,14 +82,30 @@ public class UsuarioDao implements GenericDao<Usuario> {
             valores.put(colunas[3], obj.getSenha());
 
             String[] identificador = {String.valueOf(obj.getId())};
-            return database.update(nomeTabela, valores,
+            long updateResult =  database.update(nomeTabela, valores,
                     colunas[0] + " = ?", identificador);
 
+            if (updateResult != -1) {
+                Cursor cursor = database.query(
+                        nomeTabela, colunas, "id = " + identificador[0], null, null, null, null);
+
+                if (cursor.moveToFirst()) {
+                    Usuario usuario = new Usuario();
+                    usuario.setId(cursor.getInt(0));
+                    usuario.setNome(cursor.getString(1));
+                    usuario.setEmail(cursor.getString(2));
+
+                    cursor.close();
+
+                    return usuario;
+                }
+            }
 
         } catch (SQLException ex) {
             Log.e("ERRO", "UsuarioDao.update(): " + ex.getMessage());
         }
-        return 0;
+
+        return null;
     }
 
     @Override

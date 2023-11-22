@@ -11,14 +11,17 @@ public class ItensVenda {
 
     private int quantidade;
 
+    private Produto produto;
+
     public ItensVenda() {
     }
 
-    public ItensVenda(int id, int idVenda, int idProduto, int quantidade) {
+    public ItensVenda(int id, int idVenda, int idProduto, int quantidade, Produto produto) {
         this.id = id;
         this.idVenda = idVenda;
         this.idProduto = idProduto;
         this.quantidade = quantidade;
+        this.produto = produto;
     }
 
     public int getId() {
@@ -51,6 +54,14 @@ public class ItensVenda {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     @NonNull

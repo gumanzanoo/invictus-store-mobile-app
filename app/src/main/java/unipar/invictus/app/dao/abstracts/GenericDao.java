@@ -7,7 +7,7 @@ import unipar.invictus.app.entity.Cliente;
 
 public interface GenericDao<Object> {
     Object insert(Object obj);
-    long update(Object obj);
+    Object update(Object obj);
     long delete(Object obj);
     ArrayList<Object> getAll();
     Object getById(int id);

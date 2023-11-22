@@ -74,7 +74,7 @@ public class ClienteDao implements GenericDao<Cliente> {
     }
 
     @Override
-    public long update(Cliente obj) {
+    public @Nullable Cliente update(Cliente obj) {
         try {
             ContentValues valores = new ContentValues();
             valores.put(colunas[1], obj.getNome());
@@ -82,14 +82,32 @@ public class ClienteDao implements GenericDao<Cliente> {
             valores.put(colunas[3], obj.getDocumento());
 
             String[] identificador = {String.valueOf(obj.getId())};
-            return database.update(nomeTabela, valores,
+
+            long updateResult = database.update(nomeTabela, valores,
                     colunas[0] + " = ?", identificador);
 
+            if (updateResult != -1) {
+                Cursor cursor = database.query(
+                        nomeTabela, colunas, "id = " + identificador[0], null, null, null, null);
+
+                if (cursor.moveToFirst()) {
+                    Cliente clienteInserido = new Cliente();
+                    clienteInserido.setId(cursor.getInt(0));
+                    clienteInserido.setNome(cursor.getString(1));
+                    clienteInserido.setEmail(cursor.getString(2));
+                    clienteInserido.setDocumento(cursor.getString(3));
+
+                    cursor.close();
+
+                    return clienteInserido;
+                }
+            }
 
         } catch (SQLException ex) {
             Log.e("ERRO", "ClienteDao.update(): " + ex.getMessage());
         }
-        return 0;
+
+        return null;
     }
 
     @Override

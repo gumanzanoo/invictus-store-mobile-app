@@ -27,7 +27,53 @@ public class VendaController {
         itensVendaDao = new ItensVendaDao(context);
     }
 
-    public Response create(int idCliente, ArrayList<Produto> produtos) {
+    public Response<ArrayList<Venda>> getAll() {
+        ArrayList<Venda> vendas = vendaDao.getAll();
+        if (vendas == null) {
+            return Response.response(Response.ERROR, "Nenhuma venda encontrada");
+        }
+
+        for (Venda venda : vendas) {
+            venda.setItensVenda(itensVendaDao.getByIdVenda(venda.getId()));
+            for (ItensVenda itensVenda : venda.getItensVenda()) {
+                itensVenda.setProduto(produtoDao.getById(itensVenda.getIdProduto()));
+            }
+        }
+
+        return Response.response(Response.SUCCESS, "Vendas encontradas", vendas);
+    }
+
+    public Response<Venda> getById(int id) {
+        Venda venda = vendaDao.getById(id);
+        if (venda == null) {
+            return Response.response(Response.ERROR, "Venda não encontrada");
+        }
+
+        venda.setItensVenda(itensVendaDao.getByIdVenda(venda.getId()));
+        for (ItensVenda itensVenda : venda.getItensVenda()) {
+            itensVenda.setProduto(produtoDao.getById(itensVenda.getIdProduto()));
+        }
+
+        return Response.response(Response.SUCCESS, "Venda encontrada", venda);
+    }
+
+    public Response<ArrayList<Venda>> getByIdCliente(int idCliente) {
+        ArrayList<Venda> vendas = vendaDao.getByIdCliente(idCliente);
+        if (vendas == null) {
+            return Response.response(Response.ERROR, "Nenhuma venda encontrada");
+        }
+
+        for (Venda venda : vendas) {
+            venda.setItensVenda(itensVendaDao.getByIdVenda(venda.getId()));
+            for (ItensVenda itensVenda : venda.getItensVenda()) {
+                itensVenda.setProduto(produtoDao.getById(itensVenda.getIdProduto()));
+            }
+        }
+
+        return Response.response(Response.SUCCESS, "Vendas encontradas", vendas);
+    }
+
+    public Response<Venda> create(int idCliente, ArrayList<Produto> produtos) {
         Cliente cliente = clienteDao.getById(idCliente);
         if (cliente == null) {
             return Response.response(Response.ERROR, "Cliente não encontrado");
@@ -38,9 +84,9 @@ public class VendaController {
         Venda venda = new Venda();
         venda.setClienteId(idCliente);
         venda.setValorTotal(valorTotal);
-        vendaDao.insert(venda);
+        Venda savedVenda = vendaDao.insert(venda);
 
-        attachItensVenda(venda, produtos);
+        attachItensVenda(savedVenda, produtos);
 
         return Response.response(Response.SUCCESS,
                 "Venda cadastrada com sucesso", venda);
@@ -55,7 +101,6 @@ public class VendaController {
     }
 
     public void attachItensVenda(Venda venda, ArrayList<Produto> produtos) {
-
         ArrayList<ItensVenda> arrItensVenda = new ArrayList<>();
         for (Produto produto : produtos) {
             ItensVenda ItemVenda = new ItensVenda();

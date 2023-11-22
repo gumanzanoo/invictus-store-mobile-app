@@ -73,7 +73,7 @@ public class ItensVendaDao implements GenericDao<ItensVenda> {
     }
 
     @Override
-    public long update(ItensVenda obj) {
+    public @Nullable ItensVenda update(ItensVenda obj) {
         try {
             ContentValues valores = new ContentValues();
             valores.put(colunas[1], obj.getIdVenda());
@@ -81,14 +81,31 @@ public class ItensVendaDao implements GenericDao<ItensVenda> {
             valores.put(colunas[3], obj.getQuantidade());
 
             String[] identificador = {String.valueOf(obj.getId())};
-            return database.update(nomeTabela, valores,
+            long updateResult = database.update(nomeTabela, valores,
                     colunas[0] + " = ?", identificador);
 
+            if (updateResult != -1) {
+                Cursor cursor = database.query(
+                        nomeTabela, colunas, "id = " + identificador[0], null, null, null, null);
+
+                if (cursor.moveToFirst()) {
+                    ItensVenda itensVenda = new ItensVenda();
+                    itensVenda.setId(cursor.getInt(0));
+                    itensVenda.setIdVenda(cursor.getInt(1));
+                    itensVenda.setIdProduto(cursor.getInt(2));
+                    itensVenda.setQuantidade(cursor.getInt(3));
+
+                    cursor.close();
+
+                    return itensVenda;
+                }
+            }
 
         } catch (SQLException ex) {
             Log.e("ERRO", "ItensVendaDao.update(): " + ex.getMessage());
         }
-        return 0;
+
+        return null;
     }
 
     @Override
@@ -152,5 +169,30 @@ public class ItensVendaDao implements GenericDao<ItensVenda> {
         }
 
         return null;
+    }
+
+    public ArrayList<ItensVenda> getByIdVenda(int idVenda) {
+        ArrayList<ItensVenda> lista = new ArrayList<>();
+        try {
+            Cursor cursor = database.query(nomeTabela, colunas,
+                    "idVenda = " + idVenda, null, null,
+                    null, colunas[0]);
+
+            if (cursor.moveToFirst()) {
+                do {
+                    ItensVenda itensVenda = new ItensVenda();
+                    itensVenda.setId(cursor.getInt(0));
+                    itensVenda.setIdVenda(cursor.getInt(1));
+                    itensVenda.setIdProduto(cursor.getInt(2));
+                    itensVenda.setQuantidade(cursor.getInt(3));
+
+                    lista.add(itensVenda);
+
+                } while (cursor.moveToNext());
+            }
+        } catch (SQLException ex) {
+            Log.e("ERRO", "ItensVendaDao.getByIdVenda(): " + ex.getMessage());
+        }
+        return lista;
     }
 }

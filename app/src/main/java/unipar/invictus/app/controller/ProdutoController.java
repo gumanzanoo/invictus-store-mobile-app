@@ -2,6 +2,7 @@ package unipar.invictus.app.controller;
 
 import android.content.Context;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import unipar.invictus.app.dao.ProdutoDao;
@@ -15,7 +16,32 @@ public class ProdutoController {
         produtoDao = new ProdutoDao(context);
     }
 
-    public Response create(String descricao, int valorUnitario, int qtdEstoque) {
+    public Response<Produto> getById(int id) {
+        Produto produto = produtoDao.getById(id);
+        if (produto == null) {
+            return Response.response(Response.ERROR, "Produto não encontrado");
+        }
+
+        return Response.response(Response.SUCCESS,
+                "Produto encontrado", produto);
+    }
+
+    public Response<Produto> getByCod(int cod) {
+        Produto produto = produtoDao.getByCod(cod);
+        if (produto == null) {
+            return Response.response(Response.ERROR, "Produto não encontrado");
+        }
+
+        return Response.response(Response.SUCCESS,
+                "Produto encontrado", produto);
+    }
+
+    public Response<ArrayList<Produto>> getAll() {
+        return Response.response(Response.SUCCESS,
+                "Produtos encontrados", produtoDao.getAll());
+    }
+
+    public Response<Produto> create(String descricao, double valorUnitario, int qtdEstoque) {
         Produto produto = new Produto();
         produto.setCod(gerarCodigo());
         produto.setDescricao(descricao);
@@ -41,5 +67,30 @@ public class ProdutoController {
         }
 
         throw new RuntimeException("Erro interno ao gerar código.");
+    }
+
+    public Response<?> update(Produto produto) {
+        Produto updatedProduto = produtoDao.update(produto);
+        if (updatedProduto != null) {
+            return Response.response(Response.SUCCESS,
+                    "Produto atualizado com sucesso", updatedProduto);
+        }
+
+        return Response.response(Response.ERROR,
+                "Erro ao atualizar produto");
+    }
+
+    public Response<?> delete(int id) {
+        Produto produto = produtoDao.getById(id);
+
+        if (produto == null) {
+            return Response.response(Response.ERROR,
+                    "Produto não encontrado");
+        }
+
+        produtoDao.delete(produto);
+        return Response.response(Response.SUCCESS,
+                "Produto excluído com sucesso");
+
     }
 }

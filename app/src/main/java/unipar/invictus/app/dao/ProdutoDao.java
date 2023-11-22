@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 import unipar.invictus.app.dao.abstracts.GenericDao;
 import unipar.invictus.app.database.SQLiteDataHelper;
-import unipar.invictus.app.entity.Cliente;
 import unipar.invictus.app.entity.Produto;
 
 public class ProdutoDao implements GenericDao<Produto> {
@@ -76,7 +75,7 @@ public class ProdutoDao implements GenericDao<Produto> {
     }
 
     @Override
-    public long update(Produto obj) {
+    public @Nullable Produto update(Produto obj) {
         try {
             ContentValues valores = new ContentValues();
             valores.put(colunas[1], obj.getCod());
@@ -85,14 +84,32 @@ public class ProdutoDao implements GenericDao<Produto> {
             valores.put(colunas[4], obj.getQtdEstoque());
 
             String[] identificador = {String.valueOf(obj.getId())};
-            return database.update(nomeTabela, valores,
+            long updateResult = database.update(nomeTabela, valores,
                     colunas[0] + " = ?", identificador);
 
+            if (updateResult != -1) {
+                Cursor cursor = database.query(
+                        nomeTabela, colunas, "id = " + identificador[0], null, null, null, null);
+
+                if (cursor.moveToFirst()) {
+                    Produto produto = new Produto();
+                    produto.setId(cursor.getInt(0));
+                    produto.setCod(cursor.getInt(1));
+                    produto.setDescricao(cursor.getString(2));
+                    produto.setValorUnitario(cursor.getDouble(3));
+                    produto.setQtdEstoque(cursor.getInt(4));
+
+                    cursor.close();
+
+                    return produto;
+                }
+            }
 
         } catch (SQLException ex) {
             Log.e("ERRO", "ProdutoDao.update(): " + ex.getMessage());
         }
-        return 0;
+
+        return null;
     }
 
     @Override

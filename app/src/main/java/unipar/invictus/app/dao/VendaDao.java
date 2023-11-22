@@ -74,21 +74,37 @@ public class VendaDao implements GenericDao<Venda> {
     }
 
     @Override
-    public long update(Venda obj) {
+    public @Nullable Venda update(Venda obj) {
         try {
             ContentValues valores = new ContentValues();
             valores.put(colunas[1], obj.getClienteId());
             valores.put(colunas[2], obj.getValorTotal());
 
             String[] identificador = {String.valueOf(obj.getId())};
-            return database.update(nomeTabela, valores,
+            long updateResult = database.update(nomeTabela, valores,
                     colunas[0] + " = ?", identificador);
 
+            if (updateResult != -1) {
+                Cursor cursor = database.query(
+                        nomeTabela, colunas, "id = " + identificador[0], null, null, null, null);
+
+                if (cursor.moveToFirst()) {
+                    Venda venda = new Venda();
+                    venda.setId(cursor.getInt(0));
+                    venda.setClienteId(cursor.getInt(1));
+                    venda.setValorTotal(cursor.getDouble(2));
+
+                    cursor.close();
+
+                    return venda;
+                }
+            }
 
         } catch (SQLException ex) {
             Log.e("ERRO", "VendaDao.update(): " + ex.getMessage());
         }
-        return 0;
+
+        return null;
     }
 
     @Override
@@ -150,5 +166,29 @@ public class VendaDao implements GenericDao<Venda> {
         }
 
         return null;
+    }
+
+    public ArrayList<Venda> getByIdCliente(int idCliente) {
+        ArrayList<Venda> lista = new ArrayList<>();
+        try {
+            Cursor cursor = database.query(nomeTabela, colunas,
+                    colunas[1] + " = " + idCliente, null, null,
+                    null, colunas[0]);
+
+            if (cursor.moveToFirst()) {
+                do {
+                    Venda venda = new Venda();
+                    venda.setId(cursor.getInt(0));
+                    venda.setClienteId(cursor.getInt(1));
+                    venda.setValorTotal(cursor.getDouble(2));
+
+                    lista.add(venda);
+
+                } while (cursor.moveToNext());
+            }
+        } catch (SQLException ex) {
+            Log.e("ERRO", "VendaDao.getByIdCliente(): " + ex.getMessage());
+        }
+        return lista;
     }
 }
