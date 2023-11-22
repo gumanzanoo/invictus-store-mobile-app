@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,12 +56,18 @@ public class LoginActivity extends AppCompatActivity {
             } else {
                 SessionManager sessionManager = new SessionManager(this);
                 sessionManager.login(edEmail.getText().toString());
+                abrirListagemVendas();
             }
 
         } catch (Exception e) {
             tvErro.setText(e.getMessage());
             tvErro.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void abrirListagemVendas() {
+        Intent abrirListagemVendasIntent = new Intent(this, VendaListActivity.class);
+        startActivity(abrirListagemVendasIntent);
     }
 
     private void abrirTelaCadastro() {

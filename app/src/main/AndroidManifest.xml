@@ -23,6 +23,11 @@
         </activity>
 
         <activity
+            android:name=".resources.view.VendaListActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
             android:name=".resources.view.CadastroUsuarioActivity"
             android:exported="true">
         </activity>

@@ -9,6 +9,8 @@ public class Venda {
 
     private int clienteId;
 
+    private Cliente cliente;
+
     private double valorTotal;
 
     private ArrayList<ItensVenda> itensVenda;
@@ -16,9 +18,10 @@ public class Venda {
     public Venda() {
     }
 
-    public Venda(int id, int clienteId, double valorTotal, ArrayList<ItensVenda> itensVenda) {
+    public Venda(int id, int clienteId, Cliente cliente , double valorTotal, ArrayList<ItensVenda> itensVenda) {
         this.id = id;
         this.clienteId = clienteId;
+        this.cliente = cliente;
         this.valorTotal = valorTotal;
         this.itensVenda = itensVenda;
     }
@@ -33,6 +36,14 @@ public class Venda {
 
     public int getClienteId() {
         return clienteId;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public void setClienteId(int clienteId) {

@@ -2,6 +2,8 @@ package unipar.invictus.app.controller;
 
 import android.content.Context;
 
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 
 import unipar.invictus.app.dao.ClienteDao;
@@ -27,20 +29,21 @@ public class VendaController {
         itensVendaDao = new ItensVendaDao(context);
     }
 
-    public Response<ArrayList<Venda>> getAll() {
+    public @Nullable ArrayList<Venda> getAll() {
         ArrayList<Venda> vendas = vendaDao.getAll();
         if (vendas == null) {
-            return Response.response(Response.ERROR, "Nenhuma venda encontrada");
+            return null;
         }
 
         for (Venda venda : vendas) {
+            venda.setCliente(clienteDao.getById(venda.getClienteId()));
             venda.setItensVenda(itensVendaDao.getByIdVenda(venda.getId()));
             for (ItensVenda itensVenda : venda.getItensVenda()) {
                 itensVenda.setProduto(produtoDao.getById(itensVenda.getIdProduto()));
             }
         }
 
-        return Response.response(Response.SUCCESS, "Vendas encontradas", vendas);
+        return vendas;
     }
 
     public Response<Venda> getById(int id) {
