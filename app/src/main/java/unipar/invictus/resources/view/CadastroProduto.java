@@ -1,8 +1,10 @@
 package unipar.invictus.resources.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +16,7 @@ public class CadastroProduto extends AppCompatActivity {
     private EditText edVlrProd;
     private EditText edQtdProd;
     private Button btSalvar;
+    private ImageButton menuButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +27,15 @@ public class CadastroProduto extends AppCompatActivity {
         edVlrProd = findViewById(R.id.edVlrProd);
         edQtdProd = findViewById(R.id.edQtdProd);
         btSalvar = findViewById(R.id.btSalvar);
+        menuButton = findViewById(R.id.menuButton);
 
-
+        menuButton.setOnClickListener(view -> abrirActivity(MenuActivity.class));
 
     }
 
+    private void abrirActivity(Class<?> activity) {
+        Intent intent = new Intent(this, activity);
+        startActivity(intent);
+    }
 
 }

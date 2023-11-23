@@ -20,9 +20,12 @@ public class MainActivity extends AppCompatActivity {
             Intent loginIntent = new Intent(this, LoginActivity.class);
             startActivity(loginIntent);
         } else {
-            // Continue com a lógica da MainActivity
-            setContentView(R.layout.activity_main);
-            // Restante do código...
+            abrirHome();
         }
+    }
+
+    public void abrirHome() {
+        Intent abrirHomeIntent = new Intent(this, HomeActivity.class);
+        startActivity(abrirHomeIntent);
     }
 }

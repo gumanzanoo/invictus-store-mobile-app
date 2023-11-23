@@ -1,48 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".resources.view.CadastroUsuarioActivity"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
+    android:layout_marginTop="30dp"
+    android:layout_marginBottom="30dp"
+    >
 
-    <EditText
-        android:id="@+id/edNomeCadastro"
+    <ImageButton
+        android:id="@+id/menuButton"
+        android:layout_width="30dp"
+        android:layout_height="22dp"
+        android:background="@drawable/menu"
+        android:layout_marginBottom="25dp"
+        />
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome"
-        android:layout_marginTop="16dp"/>
+        android:text="CADASTRO DE USUÁRIO"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="#112D4E"
+        android:textStyle="bold"
+        android:layout_marginBottom="25dp"
+        />
 
-    <EditText
-        android:id="@+id/edEmailCadastro"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="E-mail"
-        android:layout_below="@id/edNomeCadastro"
-        android:layout_marginTop="8dp"/>
+        android:layout_height="500dp"
+        android:orientation="vertical"
+        android:background="#112D4E"
+        android:gravity="center"
+        >
 
-    <EditText
-        android:id="@+id/edSenhaCadastro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Senha"
-        android:inputType="textPassword"
-        android:layout_below="@id/edEmailCadastro"
-        android:layout_marginTop="8dp"/>
+        <EditText
+            android:id="@+id/edNomeCadastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Insira o Nome"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/edit_text_rounded_bg"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:padding="10dp"
+            android:textSize="20sp"
+            />
+
+        <EditText
+            android:id="@+id/edEmailCadastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Insira o Email"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/edit_text_rounded_bg"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:padding="10dp"
+            android:textSize="20sp"
+            />
+
+        <EditText
+            android:id="@+id/edSenhaCadastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Insira a Senha"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/edit_text_rounded_bg"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:layout_marginBottom="15dp"/>
+
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btCadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cadastrar"
-        android:layout_below="@id/edSenhaCadastro"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginEnd="110dp"
+        android:text="SALVAR"
+        android:textSize="20sp"
+        android:backgroundTint="#6A9DDB"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"/>
 
-    <TextView
-        android:id="@+id/tvErro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btCadastrar"
-        android:layout_marginTop="16dp"
-        android:text=""
-        android:textColor="@android:color/holo_red_dark"
-        android:visibility="gone" />
-
-</RelativeLayout>
+</LinearLayout>

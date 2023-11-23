@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import unipar.invictus.R;
 import unipar.invictus.app.controller.ClienteController;
 import unipar.invictus.app.helpers.Response;

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
             if (status.equals(Response.SUCCESS)) {
                 SessionManager sessionManager = new SessionManager(this);
                 sessionManager.login(edEmail.getText().toString());
-                abrirListagemVendas();
+                abrirHome();
             } else {
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
                 tvErro.setText(message);
@@ -62,8 +63,8 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void abrirListagemVendas() {
-        Intent abrirListagemVendasIntent = new Intent(this, VendaListActivity.class);
-        startActivity(abrirListagemVendasIntent);
+    public void abrirHome() {
+        Intent abrirHomeIntent = new Intent(this, HomeActivity.class);
+        startActivity(abrirHomeIntent);
     }
 }
