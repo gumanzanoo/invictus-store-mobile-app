@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import unipar.invictus.R;
+import unipar.invictus.app.helpers.Activity;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -18,11 +19,6 @@ public class HomeActivity extends AppCompatActivity {
 
         ImageButton menuButton = findViewById(R.id.menuButton);
 
-        menuButton.setOnClickListener(view -> abrirActivity(MenuActivity.class));
-    }
-
-    private void abrirActivity(Class<?> activity) {
-        Intent intent = new Intent(this, activity);
-        startActivity(intent);
+        menuButton.setOnClickListener(view -> Activity.run(this, MenuActivity.class));
     }
 }

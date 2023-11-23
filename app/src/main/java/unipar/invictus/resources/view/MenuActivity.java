@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import unipar.invictus.R;
 import unipar.invictus.app.controller.VendaController;
 import unipar.invictus.app.entity.Venda;
+import unipar.invictus.app.helpers.Activity;
 import unipar.invictus.resources.adapter.VendaListAdapter;
 
 public class MenuActivity extends AppCompatActivity {
@@ -37,52 +38,11 @@ public class MenuActivity extends AppCompatActivity {
         btProduto = findViewById(R.id.btProduto);
         btCliente = findViewById(R.id.btCliente);
 
-        btHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                abrirActivity(HomeActivity.class);
-            }
-        });
-
-        btCatalogo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                abrirActivity(CatalogoActivity.class);
-            }
-        });
-
-        btExtrato.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                abrirActivity(ExtratoActivity.class);
-            }
-        });
-
-        btUsuario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                abrirActivity(CadastroUsuarioActivity.class);
-            }
-        });
-
-        btProduto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                abrirActivity(CadastroProduto.class);
-            }
-        });
-
-        btCliente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                abrirActivity(CadastroClienteActivity.class);
-            }
-        });
+        btHome.setOnClickListener(view -> Activity.run(this, HomeActivity.class));
+        btCatalogo.setOnClickListener(view -> Activity.run(this, CatalogoActivity.class));
+        btExtrato.setOnClickListener(view -> Activity.run(this, ExtratoActivity.class));
+        btUsuario.setOnClickListener(view -> Activity.run(this, CadastroUsuarioActivity.class));
+        btProduto.setOnClickListener(view -> Activity.run(this, CadastroProduto.class));
+        btCliente.setOnClickListener(view -> Activity.run(this, CadastroClienteActivity.class));
     }
-
-    private void abrirActivity(Class<?> activity) {
-        Intent intent = new Intent(this, activity);
-        startActivity(intent);
-    }
-
 }

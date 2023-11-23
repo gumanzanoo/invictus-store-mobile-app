@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import unipar.invictus.R;
 import unipar.invictus.app.controller.UsuarioController;
+import unipar.invictus.app.helpers.Activity;
 import unipar.invictus.app.helpers.Response;
 import unipar.invictus.app.helpers.SessionManager;
 
@@ -59,12 +60,8 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         } else {
             SessionManager sessionManager = new SessionManager(this);
             sessionManager.login(edEmailCadastro.getText().toString());
-            redirectBackToLogin();
-        }
-    }
 
-    private void redirectBackToLogin() {
-        Intent redirectBackToLoginIntent = new Intent(this, LoginActivity.class);
-        startActivity(redirectBackToLoginIntent);
+            Activity.run(this, LoginActivity.class);
+        }
     }
 }

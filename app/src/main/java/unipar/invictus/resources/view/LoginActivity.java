@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import unipar.invictus.R;
 import unipar.invictus.app.controller.UsuarioController;
+import unipar.invictus.app.helpers.Activity;
 import unipar.invictus.app.helpers.Response;
 import unipar.invictus.app.helpers.SessionManager;
 
@@ -51,7 +52,8 @@ public class LoginActivity extends AppCompatActivity {
             if (status.equals(Response.SUCCESS)) {
                 SessionManager sessionManager = new SessionManager(this);
                 sessionManager.login(edEmail.getText().toString());
-                abrirHome();
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+                Activity.run(this, HomeActivity.class);
             } else {
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
                 tvErro.setText(message);
@@ -61,10 +63,5 @@ public class LoginActivity extends AppCompatActivity {
             tvErro.setText(e.getMessage());
             tvErro.setVisibility(View.VISIBLE);
         }
-    }
-
-    public void abrirHome() {
-        Intent abrirHomeIntent = new Intent(this, HomeActivity.class);
-        startActivity(abrirHomeIntent);
     }
 }

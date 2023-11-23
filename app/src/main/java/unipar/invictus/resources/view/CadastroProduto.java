@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import unipar.invictus.R;
+import unipar.invictus.app.helpers.Activity;
 
 public class CadastroProduto extends AppCompatActivity {
 
@@ -29,13 +30,6 @@ public class CadastroProduto extends AppCompatActivity {
         btSalvar = findViewById(R.id.btSalvar);
         menuButton = findViewById(R.id.menuButton);
 
-        menuButton.setOnClickListener(view -> abrirActivity(MenuActivity.class));
-
+        menuButton.setOnClickListener(view -> Activity.run(this, MenuActivity.class));
     }
-
-    private void abrirActivity(Class<?> activity) {
-        Intent intent = new Intent(this, activity);
-        startActivity(intent);
-    }
-
 }

@@ -1,12 +1,14 @@
 package unipar.invictus.resources.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import unipar.invictus.R;
 import unipar.invictus.app.controller.ClienteController;
+import unipar.invictus.app.helpers.Activity;
 import unipar.invictus.app.helpers.Response;
 
 public class CadastroClienteActivity extends AppCompatActivity {
@@ -37,13 +39,10 @@ public class CadastroClienteActivity extends AppCompatActivity {
 
         Response response = clienteController.create(nome, email, doc);
         if (response.getStatus().equals(Response.SUCCESS)) {
-            Toast.makeText(this,
-                    response.getMessage(),
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, response.getMessage(), Toast.LENGTH_SHORT).show();
+            Activity.run(this, MenuActivity.class);
         } else {
-            Toast.makeText(this,
-                    response.getMessage(),
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, response.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 }

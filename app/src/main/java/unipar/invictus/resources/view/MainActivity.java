@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import unipar.invictus.R;
+import unipar.invictus.app.helpers.Activity;
 import unipar.invictus.app.helpers.SessionManager;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,12 +21,7 @@ public class MainActivity extends AppCompatActivity {
             Intent loginIntent = new Intent(this, LoginActivity.class);
             startActivity(loginIntent);
         } else {
-            abrirHome();
+            Activity.run(this, HomeActivity.class);
         }
-    }
-
-    public void abrirHome() {
-        Intent abrirHomeIntent = new Intent(this, HomeActivity.class);
-        startActivity(abrirHomeIntent);
     }
 }
