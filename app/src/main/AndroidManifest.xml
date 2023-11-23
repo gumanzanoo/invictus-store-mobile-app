@@ -68,12 +68,12 @@
         </activity>
 
         <activity
-            android:name=".resources.view.CadastroClienteActivity"
+            android:name=".resources.view.ProdutoActivity"
             android:exported="true">
         </activity>
 
         <activity
-            android:name=".resources.view.ProdutoActivity"
+            android:name=".resources.view.EditarProdutoActivity"
             android:exported="true">
         </activity>
 
