@@ -82,14 +82,12 @@
         android:id="@+id/btCadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edDocCadastro"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="110dp"
-        android:backgroundTint="#6A9DDB"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
         android:text="SALVAR"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:backgroundTint="#6A9DDB"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"/>
 
 </LinearLayout>
