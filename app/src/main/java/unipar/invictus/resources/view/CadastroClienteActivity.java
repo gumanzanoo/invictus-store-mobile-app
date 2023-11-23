@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import unipar.invictus.R;
 import unipar.invictus.app.controller.ClienteController;
@@ -15,7 +16,7 @@ public class CadastroClienteActivity extends AppCompatActivity {
     private EditText edNomeCadastro;
     private EditText edEmailCadastro;
     private EditText edDocCadastro;
-
+    private ImageButton menuButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +27,9 @@ public class CadastroClienteActivity extends AppCompatActivity {
         edDocCadastro = findViewById(R.id.edDocCadastro);
 
         Button btCadastrar = findViewById(R.id.btCadastrar);
+        menuButton = findViewById(R.id.menuButton);
+
+        menuButton.setOnClickListener(view -> Activity.run(this, MenuActivity.class));
 
         btCadastrar.setOnClickListener(view -> cadastrarCliente());
     }

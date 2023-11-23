@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     private EditText edEmailCadastro;
     private EditText edSenhaCadastro;
     private TextView tvErro;
+    private ImageButton menuButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,9 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         edEmailCadastro = findViewById(R.id.edEmailCadastro);
         edSenhaCadastro = findViewById(R.id.edSenhaCadastro);
         Button btCadastrar = findViewById(R.id.btCadastrar);
+        menuButton = findViewById(R.id.menuButton);
+
+        menuButton.setOnClickListener(view -> Activity.run(this, MenuActivity.class));
 
         btCadastrar.setOnClickListener(view -> cadastrarUsuario());
     }
