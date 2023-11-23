@@ -27,7 +27,7 @@ public class CadastroProduto extends AppCompatActivity {
         edDescProd = findViewById(R.id.edDescProd);
         edVlrProd = findViewById(R.id.edVlrProd);
         edQtdProd = findViewById(R.id.edQtdProd);
-        btSalvar = findViewById(R.id.btSalvar);
+        btSalvar = findViewById(R.id.btCadastrar);
         menuButton = findViewById(R.id.menuButton);
 
         menuButton.setOnClickListener(view -> Activity.run(this, MenuActivity.class));
