@@ -30,7 +30,7 @@ public class VendaListAdapter extends
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View listItem = inflater.inflate(R.layout.activity_venda_list, parent, false);
+        View listItem = inflater.inflate(R.layout.item_list_venda, parent, false);
         return new ViewHolder(listItem);
     }
 
@@ -38,17 +38,15 @@ public class VendaListAdapter extends
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Venda vendaSelecionada = listaVendas.get(position);
 
-        if (holder.textViewVendaId != null) {
-            holder.textViewVendaId.setText("ID: " + String.valueOf(vendaSelecionada.getId()));
-        }
+        Log.e("VendaListAdapter",
+                "textViewVendaId: " + String.valueOf(vendaSelecionada.getId()) +
+                " textViewClienteNome: " + vendaSelecionada.getCliente().getNome() +
+                " textViewValorTotal: " + String.valueOf(vendaSelecionada.getValorTotal())
+        );
 
-        if (holder.textViewClienteNome != null) {
-            holder.textViewClienteNome.setText("Cliente: " + vendaSelecionada.getCliente().getNome());
-        }
-
-        if (holder.textViewValorTotal != null) {
-            holder.textViewValorTotal.setText("Valor Total: " + String.valueOf(vendaSelecionada.getValorTotal()));
-        }
+        holder.textViewVendaId.setText(String.valueOf(vendaSelecionada.getId()));
+        holder.textViewClienteNome.setText(vendaSelecionada.getCliente().getNome());
+        holder.textViewValorTotal.setText(String.valueOf(vendaSelecionada.getValorTotal()));
     }
 
     @Override
@@ -56,11 +54,11 @@ public class VendaListAdapter extends
         return this.listaVendas.size();
     }
 
-    public void atualizarLista(ArrayList<Venda> novaLista) {
-        this.listaVendas.clear();
-        this.listaVendas.addAll(novaLista);
-        notifyDataSetChanged();
-    }
+//    public void atualizarLista(ArrayList<Venda> novaLista) {
+//        this.listaVendas.clear();
+//        this.listaVendas.addAll(novaLista);
+//        notifyDataSetChanged();
+//    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 

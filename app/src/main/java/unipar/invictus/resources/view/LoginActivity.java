@@ -18,8 +18,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText edEmail;
     private EditText edSenha;
-    private Button btLogin;
-    private Button btCadastro;
     private TextView tvErro;
 
     @Override
@@ -29,13 +27,11 @@ public class LoginActivity extends AppCompatActivity {
 
         edEmail = findViewById(R.id.edEmail);
         edSenha = findViewById(R.id.edSenha);
-        btLogin = findViewById(R.id.btLogin);
-        btCadastro = findViewById(R.id.btCadastro);
+        Button btLogin = findViewById(R.id.btLogin);
 
         tvErro = findViewById(R.id.tvErro);
 
         btLogin.setOnClickListener(view -> realizarLogin());
-        btCadastro.setOnClickListener(view -> abrirTelaCadastro());
     }
 
     private void realizarLogin() {
@@ -68,10 +64,5 @@ public class LoginActivity extends AppCompatActivity {
     private void abrirListagemVendas() {
         Intent abrirListagemVendasIntent = new Intent(this, VendaListActivity.class);
         startActivity(abrirListagemVendasIntent);
-    }
-
-    private void abrirTelaCadastro() {
-        Intent cadastroIntent = new Intent(this, CadastroUsuarioActivity.class);
-        startActivity(cadastroIntent);
     }
 }

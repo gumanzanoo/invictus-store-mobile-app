@@ -19,7 +19,6 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     private EditText edNomeCadastro;
     private EditText edEmailCadastro;
     private EditText edSenhaCadastro;
-    private Button btCadastrar;
     private TextView tvErro;
 
     @Override
@@ -30,7 +29,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         edNomeCadastro = findViewById(R.id.edNomeCadastro);
         edEmailCadastro = findViewById(R.id.edEmailCadastro);
         edSenhaCadastro = findViewById(R.id.edSenhaCadastro);
-        btCadastrar = findViewById(R.id.btCadastrar);
+        Button btCadastrar = findViewById(R.id.btCadastrar);
 
         btCadastrar.setOnClickListener(view -> cadastrarUsuario());
     }
