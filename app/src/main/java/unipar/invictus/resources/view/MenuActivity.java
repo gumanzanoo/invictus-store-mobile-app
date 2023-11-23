@@ -21,6 +21,7 @@ public class MenuActivity extends AppCompatActivity {
         Button btUsuario = findViewById(R.id.btUsuario);
         Button btProduto = findViewById(R.id.btProduto);
         Button btCliente = findViewById(R.id.btCliente);
+        Button btListaVendas = findViewById(R.id.btListaVendas);
 
         btHome.setOnClickListener(view -> Activity.run(this, HomeActivity.class));
         btCatalogo.setOnClickListener(view -> Activity.run(this, CatalogoActivity.class));
@@ -28,5 +29,6 @@ public class MenuActivity extends AppCompatActivity {
         btUsuario.setOnClickListener(view -> Activity.run(this, CadastroUsuarioActivity.class));
         btProduto.setOnClickListener(view -> Activity.run(this, CadastroProduto.class));
         btCliente.setOnClickListener(view -> Activity.run(this, CadastroClienteActivity.class));
+        btListaVendas.setOnClickListener(view -> Activity.run(this, VendaListActivity.class));
     }
 }

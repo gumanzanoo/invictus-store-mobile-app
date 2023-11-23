@@ -52,6 +52,19 @@
         android:paddingTop="10dp"
         />
 
+    <Button
+        android:id="@+id/btListaVendas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        android:text="Vendas"
+        android:textSize="20sp"
+        android:backgroundTint="#6A9DDB"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
