@@ -23,7 +23,17 @@
         </activity>
 
         <activity
+            android:name=".resources.view.HomeActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
             android:name=".resources.view.VendaListActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".resources.view.MenuActivity"
             android:exported="true">
         </activity>
 
@@ -34,6 +44,16 @@
 
         <activity
             android:name=".resources.view.MainActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".resources.view.CatalogoActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".resources.view.ExtratoActivity"
             android:exported="true">
         </activity>
 

@@ -1,56 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".resources.view.CadastroProduto"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
+    android:layout_marginTop="30dp"
+    android:layout_marginBottom="30dp"
+    >
+
+    <ImageButton
+        android:id="@+id/menuButton"
+        android:layout_width="30dp"
+        android:layout_height="22dp"
+        android:background="@drawable/menu"
+        android:layout_marginBottom="25dp"
+        />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="35dp"
-        android:text="Cadastro de produtos"
-        android:textSize="30dp" />
-
-    <EditText
-        android:id="@+id/edDescProd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="65sp"
-        android:layout_marginEnd="65sp"
-        android:layout_marginBottom="10dp"
+        android:text="CADASTRO DE PRODUTO"
+        android:textSize="20sp"
         android:gravity="center"
-        android:hint="Descrição" />
+        android:textColor="#112D4E"
+        android:textStyle="bold"
+        android:layout_marginBottom="25dp"
+        />
 
-    <EditText
-        android:id="@+id/edVlrProd"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
-        android:layout_marginEnd="65dp"
-        android:layout_marginBottom="10dp"
+        android:layout_height="500dp"
+        android:orientation="vertical"
+        android:background="#112D4E"
         android:gravity="center"
-        android:hint="Informe o valor" />
+        >
 
-    <EditText
-        android:id="@+id/edQtdProd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
-        android:layout_marginEnd="65dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
-        android:hint="Quantia em estoque" />
+        <EditText
+            android:id="@+id/edDescProd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Insira a Descrição"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/edit_text_rounded_bg"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:padding="10dp"
+            android:textSize="20sp"
+            />
+
+        <EditText
+            android:id="@+id/edVlrProd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Insira o Valor"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/edit_text_rounded_bg"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:padding="10dp"
+            android:textSize="20sp"
+            />
+
+        <EditText
+            android:id="@+id/edQtdProd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Insira a Quantidade"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/edit_text_rounded_bg"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:layout_marginBottom="15dp"/>
+
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btSalvar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="75dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="75dp"
-        android:text="Salvar"
-        android:textSize="15dp" />
-
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginEnd="110dp"
+        android:text="SALVAR"
+        android:textSize="20sp"
+        android:backgroundTint="#6A9DDB"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"/>
 
 </LinearLayout>
