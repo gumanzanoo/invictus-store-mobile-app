@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import unipar.invictus.R;
 import unipar.invictus.app.controller.UsuarioController;
@@ -41,10 +42,16 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         String email = edEmailCadastro.getText().toString();
         String senha = edSenhaCadastro.getText().toString();
 
-        Response<String> response = usuarioController.cadastrarUsuario(nome, email, senha);
+        Response response = usuarioController.cadastrarUsuario(nome, email, senha);
 
         String status = response.getStatus();
         String message = response.getMessage();
+
+        if (status.equals(Response.SUCCESS)) {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        }
 
         if (status.equals(Response.ERROR)) {
             tvErro.setText(message);

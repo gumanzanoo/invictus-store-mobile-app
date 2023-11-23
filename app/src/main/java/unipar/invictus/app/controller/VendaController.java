@@ -46,10 +46,10 @@ public class VendaController {
         return vendas;
     }
 
-    public Response<Venda> getById(int id) {
+    public Response getById(int id) {
         Venda venda = vendaDao.getById(id);
         if (venda == null) {
-            return Response.response(Response.ERROR, "Venda não encontrada");
+            return new Response(Response.ERROR, "Venda não encontrada");
         }
 
         venda.setItensVenda(itensVendaDao.getByIdVenda(venda.getId()));
@@ -57,13 +57,13 @@ public class VendaController {
             itensVenda.setProduto(produtoDao.getById(itensVenda.getIdProduto()));
         }
 
-        return Response.response(Response.SUCCESS, "Venda encontrada", venda);
+        return new Response(Response.SUCCESS, "Venda encontrada", venda);
     }
 
-    public Response<ArrayList<Venda>> getByIdCliente(int idCliente) {
+    public Response getByIdCliente(int idCliente) {
         ArrayList<Venda> vendas = vendaDao.getByIdCliente(idCliente);
         if (vendas == null) {
-            return Response.response(Response.ERROR, "Nenhuma venda encontrada");
+            return new Response(Response.ERROR, "Nenhuma venda encontrada");
         }
 
         for (Venda venda : vendas) {
@@ -73,13 +73,13 @@ public class VendaController {
             }
         }
 
-        return Response.response(Response.SUCCESS, "Vendas encontradas", vendas);
+        return new Response(Response.SUCCESS, "Vendas encontradas", vendas);
     }
 
-    public Response<Venda> create(int idCliente, ArrayList<Produto> produtos) {
+    public Response create(int idCliente, ArrayList<Produto> produtos) {
         Cliente cliente = clienteDao.getById(idCliente);
         if (cliente == null) {
-            return Response.response(Response.ERROR, "Cliente não encontrado");
+            return new Response(Response.ERROR, "Cliente não encontrado");
         }
 
         double valorTotal = calcularValorTotal(produtos);
@@ -91,7 +91,7 @@ public class VendaController {
 
         attachItensVenda(savedVenda, produtos);
 
-        return Response.response(Response.SUCCESS,
+        return new Response(Response.SUCCESS,
                 "Venda cadastrada com sucesso", venda);
     }
 

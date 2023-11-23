@@ -16,53 +16,53 @@ public class UsuarioController {
         usuarioDao = new UsuarioDao(context);
     }
 
-    public Response<String> login(String email, String senha) {
+    public Response login(String email, String senha) {
         Usuario usuario = usuarioDao.getByEmail(email);
 
         if (usuario == null) {
-            return Response.response(Response.ERROR, "E-mail ou senha inválidos");
+            return new Response(Response.ERROR, "E-mail ou senha inválidos");
         }
 
         if (usuario.getSenha().equals(senha)) {
-            return Response.response(Response.SUCCESS, "Login realizado com sucesso");
+            return new Response(Response.SUCCESS, "Login realizado com sucesso");
         }
 
-        return Response.response(Response.ERROR, "E-mail ou senha inválidos");
+        return new Response(Response.ERROR, "E-mail ou senha inválidos");
     }
 
-    public Response<Usuario> getById(int id) {
+    public Response getById(int id) {
         Usuario usuario = usuarioDao.getById(id);
         if (usuario == null) {
-            return Response.response(Response.ERROR,
+            return new Response(Response.ERROR,
                     "Usuário não encontrado");
         }
-        return Response.response(Response.SUCCESS,
+        return new Response(Response.SUCCESS,
                 "Usuário encontrado", usuario);
     }
 
-    public Response<Usuario> getByEmail(String email) {
+    public Response getByEmail(String email) {
         Usuario usuario = usuarioDao.getByEmail(email);
         if (usuario == null) {
-            return Response.response(Response.ERROR,
+            return new Response(Response.ERROR,
                     "Usuário não encontrado");
         }
-        return Response.response(Response.SUCCESS,
+        return new Response(Response.SUCCESS,
                 "Usuário encontrado", usuario);
     }
 
-    public Response<ArrayList<Usuario>> getAll() {
+    public Response getAll() {
         ArrayList<Usuario> usuarios = usuarioDao.getAll();
         if (usuarios == null) {
-            return Response.response(Response.ERROR,
+            return new Response(Response.ERROR,
                     "Nenhum usuário encontrado");
         }
-        return Response.response(Response.SUCCESS,
+        return new Response(Response.SUCCESS,
                 "Usuários encontrados", usuarios);
     }
 
-    public Response<String> cadastrarUsuario(String nome, String email, String senha) {
+    public Response cadastrarUsuario(String nome, String email, String senha) {
         if (usuarioExistsByEmail(email)) {
-            return Response.response(Response.ERROR,
+            return new Response(Response.ERROR,
                     "Já existe um usuário cadastrado com este e-mail");
         }
 
@@ -72,7 +72,7 @@ public class UsuarioController {
         usuario.setSenha(senha);
 
         usuarioDao.insert(usuario);
-        return Response.response(Response.SUCCESS,
+        return new Response(Response.SUCCESS,
                 "Usuário cadastrado com sucesso");
     }
 

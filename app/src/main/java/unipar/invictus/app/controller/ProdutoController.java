@@ -16,32 +16,32 @@ public class ProdutoController {
         produtoDao = new ProdutoDao(context);
     }
 
-    public Response<Produto> getById(int id) {
+    public Response getById(int id) {
         Produto produto = produtoDao.getById(id);
         if (produto == null) {
-            return Response.response(Response.ERROR, "Produto não encontrado");
+            return new Response(Response.ERROR, "Produto não encontrado");
         }
 
-        return Response.response(Response.SUCCESS,
+        return new Response(Response.SUCCESS,
                 "Produto encontrado", produto);
     }
 
-    public Response<Produto> getByCod(int cod) {
+    public Response getByCod(int cod) {
         Produto produto = produtoDao.getByCod(cod);
         if (produto == null) {
-            return Response.response(Response.ERROR, "Produto não encontrado");
+            return new Response(Response.ERROR, "Produto não encontrado");
         }
 
-        return Response.response(Response.SUCCESS,
+        return new Response(Response.SUCCESS,
                 "Produto encontrado", produto);
     }
 
-    public Response<ArrayList<Produto>> getAll() {
-        return Response.response(Response.SUCCESS,
+    public Response getAll() {
+        return new Response(Response.SUCCESS,
                 "Produtos encontrados", produtoDao.getAll());
     }
 
-    public Response<Produto> create(String descricao, double valorUnitario, int qtdEstoque) {
+    public Response create(String descricao, double valorUnitario, int qtdEstoque) {
         Produto produto = new Produto();
         produto.setCod(gerarCodigo());
         produto.setDescricao(descricao);
@@ -49,7 +49,7 @@ public class ProdutoController {
         produto.setQtdEstoque(qtdEstoque);
 
         Produto produtoRegistered = produtoDao.insert(produto);
-        return Response.response(Response.SUCCESS,
+        return new Response(Response.SUCCESS,
                 "Produto cadastrado com sucesso", produtoRegistered);
     }
 
@@ -69,27 +69,27 @@ public class ProdutoController {
         throw new RuntimeException("Erro interno ao gerar código.");
     }
 
-    public Response<?> update(Produto produto) {
+    public Response update(Produto produto) {
         Produto updatedProduto = produtoDao.update(produto);
         if (updatedProduto != null) {
-            return Response.response(Response.SUCCESS,
+            return new Response(Response.SUCCESS,
                     "Produto atualizado com sucesso", updatedProduto);
         }
 
-        return Response.response(Response.ERROR,
+        return new Response(Response.ERROR,
                 "Erro ao atualizar produto");
     }
 
-    public Response<?> delete(int id) {
+    public Response delete(int id) {
         Produto produto = produtoDao.getById(id);
 
         if (produto == null) {
-            return Response.response(Response.ERROR,
+            return new Response(Response.ERROR,
                     "Produto não encontrado");
         }
 
         produtoDao.delete(produto);
-        return Response.response(Response.SUCCESS,
+        return new Response(Response.SUCCESS,
                 "Produto excluído com sucesso");
 
     }

@@ -14,55 +14,55 @@ public class ClienteController {
         clienteDao = new ClienteDao(context);
     }
 
-    public Response<Cliente> getById(int id) {
+    public Response getById(int id) {
         Cliente cliente = clienteDao.getById(id);
         if (cliente == null) {
-            return Response.response(Response.ERROR,
+            return new Response(Response.ERROR,
                     "Cliente não encontrado");
         }
-        return Response.response(Response.SUCCESS,
+        return new Response(Response.SUCCESS,
                 "Cliente encontrado", cliente);
     }
 
-    public Response<Cliente> getByDocumento(String documento) {
+    public Response getByDocumento(String documento) {
         Cliente cliente = clienteDao.getByDocumento(documento);
         if (cliente == null) {
-            return Response.response(Response.ERROR,
+            return new Response(Response.ERROR,
                     "Cliente não encontrado");
         }
-        return Response.response(Response.SUCCESS,
+        return new Response(Response.SUCCESS,
                 "Cliente encontrado", cliente);
     }
 
-    public Response<Cliente> getByEmail(String email) {
+    public Response getByEmail(String email) {
         Cliente cliente = clienteDao.getByEmail(email);
         if (cliente == null) {
-            return Response.response(Response.ERROR,
+            return new Response(Response.ERROR,
                     "Cliente não encontrado");
         }
-        return Response.response(Response.SUCCESS,
+        return new Response(Response.SUCCESS,
                 "Cliente encontrado", cliente);
     }
 
-    public Response<ArrayList<Cliente>> getAll() {
+    public Response getAll() {
         ArrayList<Cliente> clientes = clienteDao.getAll();
         if (clientes == null) {
-            return Response.response(Response.ERROR,
+            return new Response(Response.ERROR,
                     "Nenhum cliente encontrado");
         }
-        return Response.response(Response.SUCCESS,
+        return new Response(Response.SUCCESS,
                 "Clientes encontrados", clientes);
     }
 
-    public Response<?> create(String nome, String documento, String email) {
+    public Response create(String nome, String documento, String email) {
 
         if (clienteExistsByEmail(email)) {
-            return Response.response(Response.ERROR,
+            return new Response(Response.ERROR,
                     "Já existe um cliente cadastrado com este e-mail");
         }
 
         if (clienteExistsByDocumento(documento)) {
-            return Response.response(Response.ERROR,
+            return new Response(Response.ERROR,
                     "Já existe um cliente cadastrado com este Documento");
         }
 
@@ -72,7 +72,7 @@ public class ClienteController {
         cliente.setDocumento(documento);
 
         Cliente clienteRegistered = clienteDao.insert(cliente);
-        return Response.response(Response.SUCCESS,
+        return new Response(Response.SUCCESS,
                 "Cliente cadastrado com sucesso", clienteRegistered);
     }
 
@@ -86,20 +86,20 @@ public class ClienteController {
         return cliente != null;
     }
 
-    public Response<?> update(int id, String nome, String documento, String email) {
+    public Response update(int id, String nome, String documento, String email) {
         Cliente cliente = clienteDao.getById(id);
         if (cliente == null) {
-            return Response.response(Response.ERROR,
+            return new Response(Response.ERROR,
                     "Cliente não encontrado");
         }
 
         if (clienteExistsByEmail(email) && !cliente.getEmail().equals(email)) {
-            return Response.response(Response.ERROR,
+            return new Response(Response.ERROR,
                     "Já existe um cliente cadastrado com este e-mail");
         }
 
         if (clienteExistsByDocumento(documento) && !cliente.getDocumento().equals(documento)) {
-            return Response.response(Response.ERROR,
+            return new Response(Response.ERROR,
                     "Já existe um cliente cadastrado com este Documento");
         }
 
@@ -108,19 +108,19 @@ public class ClienteController {
         cliente.setDocumento(documento);
 
         Cliente savedCliente = clienteDao.update(cliente);
-        return Response.response(Response.SUCCESS,
+        return new Response(Response.SUCCESS,
                 "Cliente atualizado com sucesso", savedCliente);
     }
 
-    public Response<?> delete(int id) {
+    public Response delete(int id) {
         Cliente cliente = clienteDao.getById(id);
         if (cliente == null) {
-            return Response.response(Response.ERROR,
+            return new Response(Response.ERROR,
                     "Cliente não encontrado");
         }
 
         clienteDao.delete(cliente);
-        return Response.response(Response.SUCCESS,
+        return new Response(Response.SUCCESS,
                 "Cliente deletado com sucesso");
     }
 }

@@ -1,33 +1,22 @@
 package unipar.invictus.app.helpers;
 
-public class Response<T> {
+public class Response {
     public static final String SUCCESS = "success";
     public static final String ERROR = "error";
     public String status;
     public String message;
 
-    public T content;
+    public Object content;
 
-    public Response(String status, String message, T content) {
+    public Response(String status, String message, Object content) {
         this.status = status;
         this.message = message;
         this.content = content;
     }
 
-    public static <T> Response<T> response(String status, String message) {
-        return new Response<>(status, message, null);
-    }
-
-    public static <T> Response<T> response(String status, String message, T content) {
-        return new Response<>(status, message, content);
-    }
-
-    public static Response<Void> success(String message) {
-        return new Response<>(SUCCESS, message, null);
-    }
-
-    public static Response<Void> error(String message) {
-        return new Response<>(ERROR, message, null);
+    public Response(String status, String message) {
+        this.status = status;
+        this.message = message;
     }
 
     public String getMessage() {
@@ -38,8 +27,12 @@ public class Response<T> {
         return status;
     }
 
+    public boolean hasContent() {
+        return content != null;
+    }
+
     public <U> U getContent(Class<U> type) {
-        if (type.isInstance(content)) {
+       if (type.isInstance(content)) {
             return type.cast(content);
         } else {
             throw new IllegalStateException("Objeto não compatível com o tipo passado por parâmetro");

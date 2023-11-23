@@ -38,12 +38,6 @@ public class VendaListAdapter extends
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Venda vendaSelecionada = listaVendas.get(position);
 
-        Log.e("VendaListAdapter",
-                "textViewVendaId: " + String.valueOf(vendaSelecionada.getId()) +
-                " textViewClienteNome: " + vendaSelecionada.getCliente().getNome() +
-                " textViewValorTotal: " + String.valueOf(vendaSelecionada.getValorTotal())
-        );
-
         holder.textViewVendaId.setText(String.valueOf(vendaSelecionada.getId()));
         holder.textViewClienteNome.setText(vendaSelecionada.getCliente().getNome());
         holder.textViewValorTotal.setText(String.valueOf(vendaSelecionada.getValorTotal()));
