@@ -29,7 +29,7 @@ public class UsuarioListActivity extends AppCompatActivity {
         menuButton.setOnClickListener(view -> Activity.run(this, MenuActivity.class));
         btCadastroUsuario.setOnClickListener(view -> Activity.run(this, CadastroUsuarioActivity.class));
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewVendas);
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewUsuarios);
 
         UsuarioController usuarioController = new UsuarioController(this);
 

@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:clickable="true"
-    android:background="?android:attr/selectableItemBackground">
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -23,7 +21,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textViewVendaId"
+                android:id="@+id/textViewClienteId"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -39,17 +37,13 @@
                 />
 
             <TextView
-                android:id="@+id/textViewValorTotal"
+                android:id="@+id/textViewClienteEmail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
-                android:layout_weight="3" />
-=======
                 android:layout_weight="3"
                 android:textColor="@color/white"
                 />
 
->>>>>>> 126787d06a427aa4338e1bd4d3a6df0663a1c557
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

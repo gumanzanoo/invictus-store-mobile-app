@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_margin="30dp"
     android:orientation="vertical"
-    tools:context=".resources.view.UsuarioListActivity">
+    tools:context=".resources.view.ClienteListActivity">
 
     <ImageButton
         android:id="@+id/menuButton"
@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="LISTAGEM DE USUARIOS"
+        android:text="LISTAGEM DE CLIENTES"
         android:textSize="20sp"
         android:gravity="center"
         android:textColor="#112D4E"
@@ -69,7 +69,7 @@
         android:background="#112D4E"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewUsuarios"
+        android:id="@+id/recyclerViewClientes"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -79,7 +79,7 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btCadastroUsuario"
+        android:id="@+id/btCadastroCliente"
         android:layout_gravity="center"
         android:src="@drawable/ic_plus"
         android:backgroundTint="#6A9DDB"
