@@ -155,6 +155,7 @@ public class CadastroVendaActivity extends AppCompatActivity {
         for (Produto produto : arrProdutosSelecionados) {
             total += produto.getValorUnitario();
         }
+        Log.d("CadastroVendaActivity", "Total: " + total);
         return total;
     }
 
