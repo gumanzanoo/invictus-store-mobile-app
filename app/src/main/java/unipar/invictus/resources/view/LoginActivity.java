@@ -2,9 +2,7 @@ package unipar.invictus.resources.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +11,7 @@ import android.widget.Toast;
 
 import unipar.invictus.R;
 import unipar.invictus.app.controller.UsuarioController;
-import unipar.invictus.app.helpers.Activity;
+import unipar.invictus.resources.helpers.Activity;
 import unipar.invictus.app.helpers.Response;
 import unipar.invictus.app.helpers.SessionManager;
 
@@ -31,10 +29,12 @@ public class LoginActivity extends AppCompatActivity {
         edEmail = findViewById(R.id.edEmail);
         edSenha = findViewById(R.id.edSenha);
         Button btLogin = findViewById(R.id.btLogin);
+        Button btCadastro = findViewById(R.id.btCadastro);
 
         tvErro = findViewById(R.id.tvErro);
 
         btLogin.setOnClickListener(view -> realizarLogin());
+        btCadastro.setOnClickListener(view -> abrirCadastro());
     }
 
     private void realizarLogin() {
@@ -63,5 +63,9 @@ public class LoginActivity extends AppCompatActivity {
             tvErro.setText(e.getMessage());
             tvErro.setVisibility(View.VISIBLE);
         }
+    }
+
+    public void abrirCadastro() {
+        Activity.run(this, CadastroUsuarioActivity.class);
     }
 }

@@ -78,13 +78,7 @@ public class Produto {
     @NonNull
     @Override
     public String toString() {
-        return "Produto{" +
-                "id=" + id +
-                ", cod=" + cod +
-                ", descricao='" + descricao + '\'' +
-                ", valorUnitario=" + valorUnitario +
-                ", qtdEstoque=" + qtdEstoque +
-                '}';
+        return descricao;
     }
 }
 

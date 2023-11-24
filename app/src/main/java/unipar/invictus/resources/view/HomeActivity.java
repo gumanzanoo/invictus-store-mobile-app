@@ -1,14 +1,12 @@
 package unipar.invictus.resources.view;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import unipar.invictus.R;
-import unipar.invictus.app.helpers.Activity;
+import unipar.invictus.resources.helpers.Activity;
 
 public class HomeActivity extends AppCompatActivity {
 

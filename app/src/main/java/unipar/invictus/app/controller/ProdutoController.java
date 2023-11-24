@@ -2,6 +2,8 @@ package unipar.invictus.app.controller;
 
 import android.content.Context;
 
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -16,14 +18,8 @@ public class ProdutoController {
         produtoDao = new ProdutoDao(context);
     }
 
-    public Response getById(int id) {
-        Produto produto = produtoDao.getById(id);
-        if (produto == null) {
-            return new Response(Response.ERROR, "Produto não encontrado");
-        }
-
-        return new Response(Response.SUCCESS,
-                "Produto encontrado", produto);
+    public Produto getById(int id) {
+        return produtoDao.getById(id);
     }
 
     public Response getByCod(int cod) {
@@ -36,9 +32,8 @@ public class ProdutoController {
                 "Produto encontrado", produto);
     }
 
-    public Response getAll() {
-        return new Response(Response.SUCCESS,
-                "Produtos encontrados", produtoDao.getAll());
+    public @Nullable ArrayList<Produto> getAll() {
+        return produtoDao.getAll();
     }
 
     public Response create(String descricao, double valorUnitario, int qtdEstoque) {

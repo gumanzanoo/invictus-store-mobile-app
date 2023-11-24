@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import unipar.invictus.app.helpers.Activity;
+import unipar.invictus.resources.helpers.Activity;
 import unipar.invictus.app.helpers.SessionManager;
 
 public class MainActivity extends AppCompatActivity {

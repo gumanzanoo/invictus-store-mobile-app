@@ -1,4 +1,4 @@
-package unipar.invictus.app.helpers;
+package unipar.invictus.resources.helpers;
 
 import android.content.Context;
 import android.content.Intent;

@@ -1,6 +1,5 @@
 package unipar.invictus.resources.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,7 +8,7 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import unipar.invictus.R;
-import unipar.invictus.app.helpers.Activity;
+import unipar.invictus.resources.helpers.Activity;
 
 public class CadastroProduto extends AppCompatActivity {
 

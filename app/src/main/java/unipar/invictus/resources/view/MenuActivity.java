@@ -6,7 +6,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import unipar.invictus.R;
-import unipar.invictus.app.helpers.Activity;
+import unipar.invictus.resources.helpers.Activity;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -22,6 +22,7 @@ public class MenuActivity extends AppCompatActivity {
         Button btProduto = findViewById(R.id.btProduto);
         Button btCliente = findViewById(R.id.btCliente);
         Button btListaVendas = findViewById(R.id.btListaVendas);
+        Button btCadastroVenda = findViewById(R.id.btCadastroVenda);
 
         btHome.setOnClickListener(view -> Activity.run(this, HomeActivity.class));
         btCatalogo.setOnClickListener(view -> Activity.run(this, CatalogoActivity.class));
@@ -30,5 +31,6 @@ public class MenuActivity extends AppCompatActivity {
         btProduto.setOnClickListener(view -> Activity.run(this, CadastroProduto.class));
         btCliente.setOnClickListener(view -> Activity.run(this, CadastroClienteActivity.class));
         btListaVendas.setOnClickListener(view -> Activity.run(this, VendaListActivity.class));
+        btCadastroVenda.setOnClickListener(view -> Activity.run(this, CadastroVendaActivity.class));
     }
 }

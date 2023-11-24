@@ -65,15 +65,18 @@
         />
 
 
-<!--    <Button-->
-<!--        android:id="@+id/btCadastro"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/btLogin"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:text="Cadastrar"-->
-<!--        android:backgroundTint="#6A9DDB"-->
-<!--        />-->
+    <Button
+        android:id="@+id/btCadastro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btLogin"
+        android:layout_marginStart="110dp"
+        android:layout_marginEnd="110dp"
+        android:text="CADASTRAR"
+        android:textSize="20sp"
+        android:backgroundTint="#6A9DDB"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"        />
 
     <TextView
         android:id="@+id/tvErro"

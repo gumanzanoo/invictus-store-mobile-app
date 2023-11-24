@@ -14,14 +14,8 @@ public class ClienteController {
         clienteDao = new ClienteDao(context);
     }
 
-    public Response getById(int id) {
-        Cliente cliente = clienteDao.getById(id);
-        if (cliente == null) {
-            return new Response(Response.ERROR,
-                    "Cliente não encontrado");
-        }
-        return new Response(Response.SUCCESS,
-                "Cliente encontrado", cliente);
+    public Cliente getById(int id) {
+        return clienteDao.getById(id);
     }
 
     public Response getByDocumento(String documento) {
@@ -44,14 +38,8 @@ public class ClienteController {
                 "Cliente encontrado", cliente);
     }
 
-    public Response getAll() {
-        ArrayList<Cliente> clientes = clienteDao.getAll();
-        if (clientes == null) {
-            return new Response(Response.ERROR,
-                    "Nenhum cliente encontrado");
-        }
-        return new Response(Response.SUCCESS,
-                "Clientes encontrados", clientes);
+    public ArrayList<Cliente> getAll() {
+        return clienteDao.getAll();
     }
 
     public Response create(String nome, String documento, String email) {

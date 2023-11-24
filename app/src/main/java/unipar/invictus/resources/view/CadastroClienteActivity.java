@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 import unipar.invictus.R;
 import unipar.invictus.app.controller.ClienteController;
-import unipar.invictus.app.helpers.Activity;
+import unipar.invictus.resources.helpers.Activity;
 import unipar.invictus.app.helpers.Response;
 
 public class CadastroClienteActivity extends AppCompatActivity {
