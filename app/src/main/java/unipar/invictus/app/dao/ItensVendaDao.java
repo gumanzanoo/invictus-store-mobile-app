@@ -173,10 +173,11 @@ public class ItensVendaDao implements IGenericDao<ItensVenda> {
 
     public ArrayList<ItensVenda> getByIdVenda(int idVenda) {
         ArrayList<ItensVenda> lista = new ArrayList<>();
+        Log.d("QUERY_DEBUG", "SELECT * FROM " + nomeTabela + " WHERE " + colunas[1] + " = " + idVenda);
         try {
             Cursor cursor = database.query(nomeTabela, colunas,
-                    "idVenda = " + idVenda, null, null,
-                    null, colunas[0]);
+                    colunas[1] + " = " + idVenda, null, null,
+                    null, null);
 
             if (cursor.moveToFirst()) {
                 do {

@@ -39,25 +39,25 @@ public class DetalhesVendaActivity extends AppCompatActivity {
         // Obter o ID da venda da Intent
         int vendaId = getIntent().getIntExtra("id", 1);
 
-        // Obter a venda com base no ID
         VendaController vendaController = new VendaController(this);
         Venda venda = vendaController.getById(vendaId);
 
-        // Atualizar as views com os detalhes da venda e do cliente
+        ArrayList<ItensVenda> itensVenda = venda.getItensVenda();
         if (venda != null) {
             tvIdVenda.setText("ID da Venda: " + venda.getId());
             tvValorTotalVenda.setText("Valor Total: " + venda.getValorTotal());
 
-            // Detalhes do cliente
             tvIdCliente.setText("ID do Cliente: " + venda.getCliente().getId());
             tvNomeCliente.setText("Nome do Cliente: " + venda.getCliente().getNome());
             tvEmailCliente.setText("Email do Cliente: " + venda.getCliente().getEmail());
             tvDocumentoCliente.setText("Documento do Cliente: " + venda.getCliente().getDocumento());
 
-            // Configurar o RecyclerView para exibir os itens da venda
-            recyclerViewItensVenda.setLayoutManager(new LinearLayoutManager(this));
-            itensAdapter = new ItemsDetalhesVendaAdapter(this, venda.getItensVenda());
-            recyclerViewItensVenda.setAdapter(itensAdapter);
+            if (itensVenda != null) {
+                Log.e("DetalhesVendaActivity", "Número de itens na venda: " + itensVenda.size());
+                recyclerViewItensVenda.setLayoutManager(new LinearLayoutManager(this));
+                itensAdapter = new ItemsDetalhesVendaAdapter(this, itensVenda);
+                recyclerViewItensVenda.setAdapter(itensAdapter);
+            }
         }
     }
 }
