@@ -2,6 +2,7 @@ package unipar.invictus.resources.view;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import unipar.invictus.app.controller.VendaController;
 import unipar.invictus.app.entity.ItensVenda;
 import unipar.invictus.app.entity.Venda;
 import unipar.invictus.resources.adapter.ItemsDetalhesVendaAdapter;
+import unipar.invictus.resources.helpers.Activity;
 
 public class DetalhesVendaActivity extends AppCompatActivity {
 
@@ -26,6 +28,9 @@ public class DetalhesVendaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_venda);
+
+        ImageButton menuButton = findViewById(R.id.menuButton);
+        menuButton.setOnClickListener(view -> Activity.run(this, MenuActivity.class));
 
         // Inicializar as views
         tvIdVenda = findViewById(R.id.tvIdVenda);

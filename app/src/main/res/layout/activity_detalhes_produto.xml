@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".resources.view.ProdutoActivity"
+    tools:context=".resources.view.DetalhesProdutoActivity"
     android:layout_marginLeft="30dp"
     android:layout_marginRight="30dp"
     android:layout_marginTop="30dp"
@@ -54,7 +54,7 @@
             android:id="@+id/tvCodigo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Insira a Descrição"
+            android:text=""
             android:inputType="textEmailAddress"
             android:background="@drawable/edit_text_rounded_bg"
             android:layout_marginStart="35dp"
@@ -79,7 +79,7 @@
             android:id="@+id/tvDescricao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Insira o Valor"
+            android:text=""
             android:inputType="textEmailAddress"
             android:background="@drawable/edit_text_rounded_bg"
             android:layout_marginStart="35dp"
@@ -101,10 +101,10 @@
             />
 
         <TextView
-            android:id="@+id/tvVlrUnitario"
+            android:id="@+id/tvValorUnitario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Insira a Quantidade"
+            android:text=""
             android:inputType="textEmailAddress"
             android:background="@drawable/edit_text_rounded_bg"
             android:layout_marginStart="35dp"
@@ -126,10 +126,10 @@
             />
 
         <TextView
-            android:id="@+id/tvQtdProd"
+            android:id="@+id/tvQuantidadeProduto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Insira a Quantidade"
+            android:text=""
             android:inputType="textEmailAddress"
             android:background="@drawable/edit_text_rounded_bg"
             android:layout_marginStart="35dp"

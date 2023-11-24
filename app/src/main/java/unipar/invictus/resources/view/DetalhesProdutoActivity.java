@@ -10,11 +10,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import unipar.invictus.R;
 import unipar.invictus.resources.helpers.Activity;
 
-public class ProdutoActivity extends AppCompatActivity {
+public class DetalhesProdutoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_produto);
+        setContentView(R.layout.activity_detalhes_produto);
 
         ImageButton menuButton = findViewById(R.id.menuButton);
         FloatingActionButton btEditar = findViewById(R.id.btEditar);
