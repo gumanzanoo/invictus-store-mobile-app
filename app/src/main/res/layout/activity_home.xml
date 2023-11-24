@@ -23,7 +23,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="COMANDAS EM ABERTO"
+        android:text="VENDAS EM ABERTO"
         android:textSize="20sp"
         android:gravity="center"
         android:textColor="#112D4E"
@@ -42,7 +42,7 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btCadastroAluno"
+        android:id="@+id/btCadastroVenda"
         android:layout_gravity="center"
         android:src="@drawable/ic_plus"
         android:backgroundTint="#6A9DDB"

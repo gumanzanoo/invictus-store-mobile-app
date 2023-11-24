@@ -27,19 +27,6 @@
         />
 
     <Button
-        android:id="@+id/btCatalogo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="100dp"
-        android:text="Catalogo"
-        android:textSize="20sp"
-        android:backgroundTint="#6A9DDB"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        />
-
-    <Button
         android:id="@+id/btExtrato"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,24 +52,13 @@
         android:paddingTop="10dp"
         />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CADASTRO"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:textColor="#112D4E"
-        android:textStyle="bold"
-        android:layout_marginTop="25dp"
-        />
-
     <Button
         android:id="@+id/btUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginEnd="100dp"
-        android:text="Usuário"
+        android:text="Usuários"
         android:textSize="20sp"
         android:backgroundTint="#6A9DDB"
         android:paddingBottom="10dp"
@@ -95,7 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginEnd="100dp"
-        android:text="Produto"
+        android:text="Produtos"
         android:textSize="20sp"
         android:backgroundTint="#6A9DDB"
         android:paddingBottom="10dp"
@@ -108,24 +84,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginEnd="100dp"
-        android:text="Cliente"
+        android:text="Clientes"
         android:textSize="20sp"
         android:backgroundTint="#6A9DDB"
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
         />
 
-    <Button
-        android:id="@+id/btCadastroVenda"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="100dp"
-        android:text="Venda"
-        android:textSize="20sp"
-        android:backgroundTint="#6A9DDB"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        />
 
 </LinearLayout>
