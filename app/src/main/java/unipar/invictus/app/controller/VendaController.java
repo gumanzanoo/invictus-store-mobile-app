@@ -1,6 +1,7 @@
 package unipar.invictus.app.controller;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -88,9 +89,11 @@ public class VendaController {
         venda.setClienteId(idCliente);
         venda.setValorTotal(valorTotal);
         Venda savedVenda = vendaDao.insert(venda);
+        Log.d("VendaController", "Venda cadastrada: " + "oi" + " - " + "oi" + " - " + "oi");
 
         attachItensVenda(savedVenda, produtos);
 
+        Log.d("VendaController", "Venda cadastrada: " + savedVenda.getClienteId() + " - " + savedVenda.getValorTotal());
         return new Response(Response.SUCCESS,
                 "Venda cadastrada com sucesso", venda);
     }
@@ -98,7 +101,7 @@ public class VendaController {
     public double calcularValorTotal(ArrayList<Produto> produtos) {
         double valorTotal = 0;
         for (Produto produto : produtos) {
-            valorTotal += produto.getValorUnitario();
+            valorTotal += produto.getValorUnitario() * produto.getQuantidadeVenda();
         }
         return valorTotal;
     }

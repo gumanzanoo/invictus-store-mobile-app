@@ -134,6 +134,7 @@ public class ClienteDao implements IGenericDao<Cliente> {
             if (cursor.moveToFirst()) {
                 do {
                     Cliente cliente = new Cliente();
+                    cliente.setId(cursor.getInt(0));
                     cliente.setNome(cursor.getString(1));
                     cliente.setEmail(cursor.getString(2));
                     cliente.setDocumento(cursor.getString(3));

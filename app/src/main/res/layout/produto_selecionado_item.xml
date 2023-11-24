@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="16sp"
+        android:textColor="@color/white"
         android:textStyle="bold"/>
 
     <TextView
@@ -19,13 +20,22 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="16sp"
+        android:textColor="@color/white"
         android:textStyle="bold"/>
 
     <Button
-        android:id="@+id/btnAumentarQuantidade"
+        android:id="@+id/btnRemoverProduto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#6A9DDB"
+        android:text="Remover"/>
+
+    <Button
+        android:id="@+id/btnDiminuirQuantidade"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:backgroundTint="#6A9DDB"
+        android:backgroundTint="#FF0000"
+        android:textColor="@color/white"
         android:text="+"
         android:textSize="12sp"/>
 
@@ -35,21 +45,15 @@
         android:layout_height="wrap_content"
         android:text="1"
         android:paddingStart="8dp"
+        android:textColor="@color/white"
         android:paddingEnd="8dp"/>
 
     <Button
-        android:id="@+id/btnDiminuirQuantidade"
+        android:id="@+id/btnAcrescentarQuantidade"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:backgroundTint="#6A9DDB"
+        android:backgroundTint="#00FF00"
+        android:textColor="@color/white"
         android:text="-"
         android:textSize="12sp"/>
-
-    <Button
-        android:id="@+id/btnRemoverProduto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#6A9DDB"
-        android:text="Remover"/>
-
 </LinearLayout>

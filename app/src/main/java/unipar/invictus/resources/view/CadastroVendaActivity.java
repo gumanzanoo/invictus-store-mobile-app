@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import unipar.invictus.R;
 import unipar.invictus.app.controller.ClienteController;
@@ -32,23 +32,26 @@ public class CadastroVendaActivity extends AppCompatActivity {
     private RecyclerView rvProdutosSelecionados;
     private ProdutoSelecionadoAdapter produtoAdapter;
     private TextView tvClienteSelecionado;
-    private TextView tvValorTotal;
+    public TextView tvValorTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_venda);
 
-        Spinner spProdutos = findViewById(R.id.spProdutos);
-        spinnerProdutos(spProdutos);
-
         Spinner spClientes = findViewById(R.id.spClientes);
         spinnerClientes(spClientes);
+
+        Spinner spProdutos = findViewById(R.id.spProdutos);
+        spinnerProdutos(spProdutos);
 
         rvProdutosSelecionados = findViewById(R.id.rvProdutosSelecionados);
         rvProdutosSelecionados.setLayoutManager(new LinearLayoutManager(this));
         produtoAdapter = new ProdutoSelecionadoAdapter(this, produtosSelecionados, CadastroVendaActivity.this);
         rvProdutosSelecionados.setAdapter(produtoAdapter);
+
+        Button btCadastrarVenda = findViewById(R.id.btCadastrarVenda);
+        btCadastrarVenda.setOnClickListener(view -> cadastrarVenda());
     }
 
     public void spinnerProdutos(Spinner spProdutos) {
@@ -76,15 +79,23 @@ public class CadastroVendaActivity extends AppCompatActivity {
                 public void onItemSelected(AdapterView<?> parentView, View view, int position, long l) {
                     if (position > 0) {
                         Produto produtoSelecionado = (Produto) parentView.getItemAtPosition(position);
-                        if (!produtosSelecionados.contains(produtoSelecionado)) {
+
+                        int index = produtosSelecionados.indexOf(produtoSelecionado);
+                        if (index != -1) {
+                            Produto produtoExistente = produtosSelecionados.get(index);
+                            produtoExistente.setQuantidadeVenda(produtoExistente.getQuantidadeVenda() + 1);
+                        } else {
+                            produtoSelecionado.setQuantidadeVenda(1);
                             produtosSelecionados.add(produtoSelecionado);
-                            produtoAdapter.notifyDataSetChanged();
-                            tvValorTotal = findViewById(R.id.tvValorTotal);
-                            if (tvValorTotal != null) {
-                                tvValorTotal.setText("Valor Total: " + calcularTotal(produtosSelecionados));
-                            } else {
-                                Log.e("CadastroVendaActivity", "TextView not found");
-                            }
+                        }
+
+                        produtoAdapter.notifyDataSetChanged();
+
+                        tvValorTotal = findViewById(R.id.tvValorTotal);
+                        if (tvValorTotal != null) {
+                            tvValorTotal.setText("Valor Total: " + calcularTotal(produtosSelecionados));
+                        } else {
+                            Log.e("CadastroVendaActivity", "TextView not found");
                         }
                     }
                 }
@@ -130,7 +141,9 @@ public class CadastroVendaActivity extends AppCompatActivity {
                         if (position > 0) {
                             Cliente clienteSelecionado = (Cliente) parentView.getItemAtPosition(position);
                             if (!produtosSelecionados.contains(clienteSelecionado)) {
+                                cliente = clienteSelecionado;
                                 tvClienteSelecionado.setText(clienteSelecionado.getNome() + " - " + clienteSelecionado.getEmail());
+                                Log.d("CadastroVendaActivity", "Cliente selecionado: " + cliente.getId() + " - " + cliente.getNome() + " - " + cliente.getEmail());
                             }
                         }
                     } else {
@@ -153,13 +166,21 @@ public class CadastroVendaActivity extends AppCompatActivity {
     public double calcularTotal(ArrayList<Produto> arrProdutosSelecionados) {
         double total = 0;
         for (Produto produto : arrProdutosSelecionados) {
-            total += produto.getValorUnitario();
+            total += produto.getValorUnitario() * produto.getQuantidadeVenda();
         }
         Log.d("CadastroVendaActivity", "Total: " + total);
         return total;
     }
 
-    public void createVenda(View view) {
+    public void updateTotalValue() {
+        if (tvValorTotal != null) {
+            tvValorTotal.setText("Valor Total: " + calcularTotal(produtosSelecionados));
+        } else {
+            Log.e("CadastroVendaActivity", "TextView not found");
+        }
+    }
+
+    public void cadastrarVenda() {
         VendaController vendaController = new VendaController(this);
         vendaController.create(cliente.getId(), produtosSelecionados);
 
