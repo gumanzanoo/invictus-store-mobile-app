@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
+android:layout_margin="30dp"
+android:orientation="vertical"
 tools:context=".resources.view.VendaListActivity">
+
+    <ImageButton
+        android:id="@+id/menuButton"
+        android:layout_width="30dp"
+        android:layout_height="22dp"
+        android:background="@drawable/menu"
+        android:layout_marginBottom="25dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LISTAGEM DE VENDAS"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="#112D4E"
+        android:textStyle="bold"
+        android:layout_marginBottom="25dp"
+        />
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -17,48 +38,53 @@ tools:context=".resources.view.VendaListActivity">
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="ID "/>
+        android:text="ID "
+        android:textSize="20sp"
+        />
 
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="3"
-        android:text="Cliente"/>
+        android:text="Cliente"
+        android:textSize="20sp"
+        />
 
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="3"
-        android:text="Valor Total"/>
+        android:text="Valor Total"
+        android:textSize="20sp"
+        />
 
 </LinearLayout>
 
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="1dp"
+    android:layout_height="2dp"
     android:orientation="horizontal"
     android:id="@+id/lnLine"
     android:layout_below="@+id/lnTitulo"
-    android:background="@android:color/darker_gray"/>
+    android:background="#112D4E"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewVendas"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_below="@+id/lnLine"
         android:layout_marginTop="2dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/btCadastroAluno"
-    android:layout_marginEnd="20dp"
-    android:layout_marginBottom="20dp"
-    android:layout_alignParentEnd="true"
-    android:layout_alignParentBottom="true"
-    android:src="@drawable/ic_plus"
-    android:backgroundTint="@android:color/holo_green_dark"
-    android:contentDescription="Listagem Vendas" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btCadastroAluno"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_plus"
+        android:backgroundTint="#6A9DDB"
+        android:contentDescription="Listagem Vendas"
+        style="@style/MyFloatingActionButton" />
 
-</RelativeLayout>
+</LinearLayout>
 
