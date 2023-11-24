@@ -132,6 +132,7 @@ public class UsuarioDao implements IGenericDao<Usuario> {
             if (cursor.moveToFirst()) {
                 do {
                     Usuario usuario = new Usuario();
+                    usuario.setId(cursor.getInt(0));
                     usuario.setNome(cursor.getString(1));
                     usuario.setEmail(cursor.getString(2));
                     usuario.setSenha(cursor.getString(3));
