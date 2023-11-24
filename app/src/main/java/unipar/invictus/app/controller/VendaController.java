@@ -49,10 +49,10 @@ public class VendaController {
 
     public Venda getById(int id) {
         Venda venda = vendaDao.getById(id);
-        Log.e("Venda", venda.toString());
-        Log.e("Venda", clienteDao.getById(venda.getClienteId()).toString());
+
+        Log.e("ITENS ", String.valueOf(itensVendaDao.getByIdVenda(venda.getId()).size()));
+
         venda.setCliente(clienteDao.getById(venda.getClienteId()));
-        Log.e("Venda", venda.getCliente().toString());
         venda.setItensVenda(itensVendaDao.getByIdVenda(venda.getId()));
         for (ItensVenda itensVenda : venda.getItensVenda()) {
             itensVenda.setProduto(produtoDao.getById(itensVenda.getIdProduto()));

@@ -1,6 +1,7 @@
 package unipar.invictus.resources.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,8 @@ public class ItemsDetalhesVendaAdapter extends
         ItensVenda item = itensVenda.get(position);
         ProdutoController produtoController = new ProdutoController(inflater.getContext());
         Produto produto = produtoController.getById(item.getIdProduto());
+
+        Log.d("ItemsDetalhesVendaAdapter", "Número de itens na lista: " + itensVenda.size());
 
         if (produto != null) {
             holder.tvDescricao.setText(produto.getDescricao());
