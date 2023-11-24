@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                 SessionManager sessionManager = new SessionManager(this);
                 sessionManager.login(edEmail.getText().toString());
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-                Activity.run(this, HomeActivity.class);
+                Activity.run(this, MenuActivity.class);
             } else {
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
                 tvErro.setText(message);

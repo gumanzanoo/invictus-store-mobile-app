@@ -22,19 +22,14 @@ public class ProdutoController {
         return produtoDao.getById(id);
     }
 
-    public Response getByCod(int cod) {
-        Produto produto = produtoDao.getByCod(cod);
-        if (produto == null) {
-            return new Response(Response.ERROR, "Produto não encontrado");
-        }
-
-        return new Response(Response.SUCCESS,
-                "Produto encontrado", produto);
-    }
-
     public @Nullable ArrayList<Produto> getAll() {
         return produtoDao.getAll();
     }
+
+    public Produto getByCod(int cod) {
+        return produtoDao.getByCod(cod);
+    }
+
 
     public Response create(String descricao, double valorUnitario, int qtdEstoque) {
         Produto produto = new Produto();

@@ -27,7 +27,7 @@ public class ProdutoListActivity extends AppCompatActivity {
         FloatingActionButton btCadastroProduto = findViewById(R.id.btCadastroProduto);
 
         menuButton.setOnClickListener(view -> Activity.run(this, MenuActivity.class));
-        btCadastroProduto.setOnClickListener(view -> Activity.run(this, CadastroProduto.class));
+        btCadastroProduto.setOnClickListener(view -> Activity.run(this, CadastroProdutoActivity.class));
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewProdutos);
 

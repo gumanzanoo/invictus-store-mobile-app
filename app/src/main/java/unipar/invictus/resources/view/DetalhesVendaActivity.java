@@ -1,7 +1,8 @@
 package unipar.invictus.resources.view;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import unipar.invictus.app.controller.VendaController;
 import unipar.invictus.app.entity.ItensVenda;
 import unipar.invictus.app.entity.Venda;
 import unipar.invictus.resources.adapter.ItemsDetalhesVendaAdapter;
+import unipar.invictus.resources.helpers.Activity;
 
 public class DetalhesVendaActivity extends AppCompatActivity {
 
@@ -27,7 +29,6 @@ public class DetalhesVendaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_venda);
 
-        // Inicializar as views
         tvIdVenda = findViewById(R.id.tvIdVenda);
         tvValorTotalVenda = findViewById(R.id.tvValorTotalVenda);
         tvIdCliente = findViewById(R.id.tvIdCliente);
@@ -35,14 +36,14 @@ public class DetalhesVendaActivity extends AppCompatActivity {
         tvEmailCliente = findViewById(R.id.tvEmailCliente);
         tvDocumentoCliente = findViewById(R.id.tvDocumentoCliente);
         recyclerViewItensVenda = findViewById(R.id.recyclerViewItensVenda);
+        ImageButton menuButton = findViewById(R.id.menuButton);
 
-        // Obter o ID da venda da Intent
         int vendaId = getIntent().getIntExtra("id", 1);
 
         VendaController vendaController = new VendaController(this);
         Venda venda = vendaController.getById(vendaId);
-
         ArrayList<ItensVenda> itensVenda = venda.getItensVenda();
+
         if (venda != null) {
             tvIdVenda.setText("ID da Venda: " + venda.getId());
             tvValorTotalVenda.setText("Valor Total: " + venda.getValorTotal());
@@ -53,11 +54,12 @@ public class DetalhesVendaActivity extends AppCompatActivity {
             tvDocumentoCliente.setText("Documento do Cliente: " + venda.getCliente().getDocumento());
 
             if (itensVenda != null) {
-                Log.e("DetalhesVendaActivity", "Número de itens na venda: " + itensVenda.size());
                 recyclerViewItensVenda.setLayoutManager(new LinearLayoutManager(this));
                 itensAdapter = new ItemsDetalhesVendaAdapter(this, itensVenda);
                 recyclerViewItensVenda.setAdapter(itensAdapter);
             }
         }
+
+        menuButton.setOnClickListener(view -> Activity.run(this, MenuActivity.class));
     }
 }

@@ -40,8 +40,6 @@ public class ItemsDetalhesVendaAdapter extends
         ProdutoController produtoController = new ProdutoController(inflater.getContext());
         Produto produto = produtoController.getById(item.getIdProduto());
 
-        Log.d("ItemsDetalhesVendaAdapter", "Número de itens na lista: " + itensVenda.size());
-
         if (produto != null) {
             holder.tvDescricao.setText(produto.getDescricao());
             holder.tvCodigo.setText(produto.getCod());

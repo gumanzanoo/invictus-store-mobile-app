@@ -18,28 +18,16 @@ public class ClienteController {
         return clienteDao.getById(id);
     }
 
-    public Response getByDocumento(String documento) {
-        Cliente cliente = clienteDao.getByDocumento(documento);
-        if (cliente == null) {
-            return new Response(Response.ERROR,
-                    "Cliente não encontrado");
-        }
-        return new Response(Response.SUCCESS,
-                "Cliente encontrado", cliente);
-    }
-
-    public Response getByEmail(String email) {
-        Cliente cliente = clienteDao.getByEmail(email);
-        if (cliente == null) {
-            return new Response(Response.ERROR,
-                    "Cliente não encontrado");
-        }
-        return new Response(Response.SUCCESS,
-                "Cliente encontrado", cliente);
-    }
-
     public ArrayList<Cliente> getAll() {
         return clienteDao.getAll();
+    }
+
+    public Cliente getByDocumento(String documento) {
+        return clienteDao.getByDocumento(documento);
+    }
+
+    public Cliente getByEmail(String email) {
+        return clienteDao.getByEmail(email);
     }
 
     public Response create(String nome, String documento, String email) {

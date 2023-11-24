@@ -49,9 +49,6 @@ public class VendaController {
 
     public Venda getById(int id) {
         Venda venda = vendaDao.getById(id);
-
-        Log.e("ITENS ", String.valueOf(itensVendaDao.getByIdVenda(venda.getId()).size()));
-
         venda.setCliente(clienteDao.getById(venda.getClienteId()));
         venda.setItensVenda(itensVendaDao.getByIdVenda(venda.getId()));
         for (ItensVenda itensVenda : venda.getItensVenda()) {
@@ -61,11 +58,8 @@ public class VendaController {
         return venda;
     }
 
-    public Response getByIdCliente(int idCliente) {
+    public ArrayList<Venda> getByIdCliente(int idCliente) {
         ArrayList<Venda> vendas = vendaDao.getByIdCliente(idCliente);
-        if (vendas == null) {
-            return new Response(Response.ERROR, "Nenhuma venda encontrada");
-        }
 
         for (Venda venda : vendas) {
             venda.setItensVenda(itensVendaDao.getByIdVenda(venda.getId()));
@@ -74,7 +68,7 @@ public class VendaController {
             }
         }
 
-        return new Response(Response.SUCCESS, "Vendas encontradas", vendas);
+        return vendas;
     }
 
     public Response create(int idCliente, ArrayList<Produto> produtos) {

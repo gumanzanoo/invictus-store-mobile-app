@@ -30,24 +30,12 @@ public class UsuarioController {
         return new Response(Response.ERROR, "E-mail ou senha inválidos");
     }
 
-    public Response getById(int id) {
-        Usuario usuario = usuarioDao.getById(id);
-        if (usuario == null) {
-            return new Response(Response.ERROR,
-                    "Usuário não encontrado");
-        }
-        return new Response(Response.SUCCESS,
-                "Usuário encontrado", usuario);
+    public Usuario getById(int id) {
+        return usuarioDao.getById(id);
     }
 
-    public Response getByEmail(String email) {
-        Usuario usuario = usuarioDao.getByEmail(email);
-        if (usuario == null) {
-            return new Response(Response.ERROR,
-                    "Usuário não encontrado");
-        }
-        return new Response(Response.SUCCESS,
-                "Usuário encontrado", usuario);
+    public Usuario getByEmail(String email) {
+        return usuarioDao.getByEmail(email);
     }
 
     public ArrayList<Usuario> getAll() {

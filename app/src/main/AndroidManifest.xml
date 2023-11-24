@@ -23,6 +23,11 @@
         </activity>
 
         <activity
+            android:name=".resources.view.CadastroProdutoActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
             android:name=".resources.view.DetalhesVendaActivity"
             android:exported="true">
         </activity>
@@ -64,11 +69,6 @@
 
         <activity
             android:name=".resources.view.ExtratoActivity"
-            android:exported="true">
-        </activity>
-
-        <activity
-            android:name=".resources.view.CadastroProduto"
             android:exported="true">
         </activity>
 
