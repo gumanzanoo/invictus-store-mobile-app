@@ -1,11 +1,6 @@
 package unipar.invictus.resources.view;
 
 import android.os.Bundle;
-<<<<<<< HEAD
-import android.widget.Button;
-=======
-import android.util.Log;
->>>>>>> 5518714e334a2ed2a4e3a1cb64f0c233ecbbb23d
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -33,13 +28,6 @@ public class DetalhesVendaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_venda);
 
-<<<<<<< HEAD
-=======
-        ImageButton menuButton = findViewById(R.id.menuButton);
-        menuButton.setOnClickListener(view -> Activity.run(this, MenuActivity.class));
-
-        // Inicializar as views
->>>>>>> 5518714e334a2ed2a4e3a1cb64f0c233ecbbb23d
         tvIdVenda = findViewById(R.id.tvIdVenda);
         tvValorTotalVenda = findViewById(R.id.tvValorTotalVenda);
         tvIdCliente = findViewById(R.id.tvIdCliente);
@@ -47,7 +35,6 @@ public class DetalhesVendaActivity extends AppCompatActivity {
         tvEmailCliente = findViewById(R.id.tvEmailCliente);
         tvDocumentoCliente = findViewById(R.id.tvDocumentoCliente);
         recyclerViewItensVenda = findViewById(R.id.recyclerViewItensVenda);
-        ImageButton menuButton = findViewById(R.id.menuButton);
 
         int vendaId = getIntent().getIntExtra("id", 1);
 
@@ -71,6 +58,6 @@ public class DetalhesVendaActivity extends AppCompatActivity {
             }
         }
 
-        menuButton.setOnClickListener(view -> Activity.run(this, MenuActivity.class));
-    }
+        ImageButton menuButton = findViewById(R.id.menuButton);
+        menuButton.setOnClickListener(view -> Activity.run(this, MenuActivity.class));    }
 }
