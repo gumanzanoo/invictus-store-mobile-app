@@ -1,6 +1,7 @@
 package unipar.invictus.resources.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 
 import unipar.invictus.R;
 import unipar.invictus.app.entity.Produto;
+import unipar.invictus.resources.view.DetalhesProdutoActivity;
 
 public class ProdutosListAdapter extends
         RecyclerView.Adapter<ProdutosListAdapter.ViewHolder> {
@@ -40,6 +42,13 @@ public class ProdutosListAdapter extends
         holder.textViewProdutoId.setText(String.valueOf(produtoSelecionado.getId()));
         holder.textViewProdutoDescricao.setText(produtoSelecionado.getDescricao());
         holder.textViewProdutoValorUnitario.setText(String.valueOf(produtoSelecionado.getValorUnitario()));
+
+        holder.itemView.setOnClickListener(v -> {
+            Produto produto = listaProdutos.get(position);
+            Intent intent = new Intent(context, DetalhesProdutoActivity.class);
+            intent.putExtra("id", produto.getId());
+            context.startActivity(intent);
+        });
     }
 
     @Override

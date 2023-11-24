@@ -73,7 +73,16 @@
         </activity>
 
         <activity
+<<<<<<< HEAD
             android:name=".resources.view.ProdutoActivity"
+=======
+            android:name=".resources.view.CadastroProduto"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".resources.view.DetalhesProdutoActivity"
+>>>>>>> 5518714e334a2ed2a4e3a1cb64f0c233ecbbb23d
             android:exported="true">
         </activity>
 
