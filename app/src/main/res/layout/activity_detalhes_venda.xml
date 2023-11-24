@@ -1,6 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Detalhes da Venda -->
+    <TextView
+        android:id="@+id/tvIdVenda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID da Venda: "
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/tvValorTotalVenda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valor Total: "
+        android:textSize="16sp"
+        android:layout_below="@+id/tvIdVenda"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"/>
+
+    <!-- Detalhes do Cliente -->
+    <TextView
+        android:id="@+id/tvIdCliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID do Cliente: "
+        android:textSize="16sp"
+        android:layout_below="@+id/tvValorTotalVenda"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/tvNomeCliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nome do Cliente: "
+        android:textSize="16sp"
+        android:layout_below="@+id/tvIdCliente"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/tvEmailCliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email do Cliente: "
+        android:textSize="16sp"
+        android:layout_below="@+id/tvNomeCliente"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/tvDocumentoCliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Documento do Cliente: "
+        android:textSize="16sp"
+        android:layout_below="@+id/tvEmailCliente"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"/>
+
+    <!-- Itens da Venda -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewItensVenda"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDocumentoCliente"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"/>
+</RelativeLayout>

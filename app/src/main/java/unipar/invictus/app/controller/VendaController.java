@@ -47,18 +47,18 @@ public class VendaController {
         return vendas;
     }
 
-    public Response getById(int id) {
+    public Venda getById(int id) {
         Venda venda = vendaDao.getById(id);
-        if (venda == null) {
-            return new Response(Response.ERROR, "Venda não encontrada");
-        }
-
+        Log.e("Venda", venda.toString());
+        Log.e("Venda", clienteDao.getById(venda.getClienteId()).toString());
+        venda.setCliente(clienteDao.getById(venda.getClienteId()));
+        Log.e("Venda", venda.getCliente().toString());
         venda.setItensVenda(itensVendaDao.getByIdVenda(venda.getId()));
         for (ItensVenda itensVenda : venda.getItensVenda()) {
             itensVenda.setProduto(produtoDao.getById(itensVenda.getIdProduto()));
         }
 
-        return new Response(Response.SUCCESS, "Venda encontrada", venda);
+        return venda;
     }
 
     public Response getByIdCliente(int idCliente) {

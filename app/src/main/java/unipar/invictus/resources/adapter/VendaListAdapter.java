@@ -1,14 +1,17 @@
 package unipar.invictus.resources.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import unipar.invictus.R;
 import unipar.invictus.app.entity.Venda;
+import unipar.invictus.resources.view.DetalhesVendaActivity;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,18 +44,19 @@ public class VendaListAdapter extends
         holder.textViewVendaId.setText(String.valueOf(vendaSelecionada.getId()));
         holder.textViewClienteNome.setText(vendaSelecionada.getCliente().getNome());
         holder.textViewValorTotal.setText(String.valueOf(vendaSelecionada.getValorTotal()));
+
+        holder.itemView.setOnClickListener(v -> {
+            Venda venda = listaVendas.get(position);
+            Intent intent = new Intent(context, DetalhesVendaActivity.class);
+            intent.putExtra("id", venda.getId());
+            context.startActivity(intent);
+        });
     }
 
     @Override
     public int getItemCount() {
         return this.listaVendas.size();
     }
-
-//    public void atualizarLista(ArrayList<Venda> novaLista) {
-//        this.listaVendas.clear();
-//        this.listaVendas.addAll(novaLista);
-//        notifyDataSetChanged();
-//    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 

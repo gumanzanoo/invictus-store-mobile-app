@@ -130,6 +130,7 @@ public class VendaDao implements IGenericDao<Venda> {
             if (cursor.moveToFirst()) {
                 do {
                     Venda venda = new Venda();
+                    venda.setId(cursor.getInt(0));
                     venda.setClienteId(cursor.getInt(1));
                     venda.setValorTotal(cursor.getDouble(2));
 
