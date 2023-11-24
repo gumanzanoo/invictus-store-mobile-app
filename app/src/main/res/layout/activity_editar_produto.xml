@@ -76,7 +76,7 @@
             />
 
         <EditText
-            android:id="@+id/etDescricao"
+            android:id="@+id/edDescricao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Descrição"
@@ -101,7 +101,7 @@
             />
 
         <EditText
-            android:id="@+id/etVlrUnitario"
+            android:id="@+id/edVlrUnitario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Valor Unitario"
@@ -125,7 +125,7 @@
             />
 
         <EditText
-            android:id="@+id/etQtdProd"
+            android:id="@+id/edQtdProd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Quantidade"
