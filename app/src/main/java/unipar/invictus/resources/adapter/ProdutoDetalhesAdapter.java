@@ -9,19 +9,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import unipar.invictus.R;
-import unipar.invictus.app.controller.ProdutoController;
-import unipar.invictus.app.entity.ItensVenda;
 import unipar.invictus.app.entity.Produto;
 
 public class ProdutoDetalhesAdapter extends
         RecyclerView.Adapter<ProdutoDetalhesAdapter.ProdutoDetalhesViewHolder> {
     private final LayoutInflater inflater;
 
-    public ProdutoDetalhesAdapter(Context context) {
+    private final List<Produto> produtos;
+
+    public ProdutoDetalhesAdapter(Context context, ArrayList<Produto> produtos) {
         this.inflater = LayoutInflater.from(context);
+        this.produtos = produtos;
     }
 
     @NonNull
@@ -33,20 +35,19 @@ public class ProdutoDetalhesAdapter extends
 
     @Override
     public void onBindViewHolder(@NonNull ProdutoDetalhesViewHolder holder, int position) {
-        ProdutoController produtoController = new ProdutoController(inflater.getContext());
-        Produto produto = produtoController.getById(item.getIdProduto());
+        Produto produto = produtos.get(position);
 
         if (produto != null) {
             holder.tvDescricao.setText(produto.getDescricao());
             holder.tvCodigo.setText(produto.getCod());
             holder.tvValorUnitario.setText(String.valueOf(produto.getValorUnitario()));
-            holder.tvQuantidade.setText(String.valueOf(item.getQuantidade()));
+            holder.tvQuantidade.setText(String.valueOf(produto.getQuantidadeVenda()));
         }
     }
 
     @Override
     public int getItemCount() {
-        return itensVenda.size();
+        return produtos.size();
     }
 
     static class ProdutoDetalhesViewHolder extends RecyclerView.ViewHolder {
@@ -55,7 +56,7 @@ public class ProdutoDetalhesAdapter extends
         TextView tvValorUnitario;
         TextView tvQuantidade;
 
-        ProdutosDetalhesViewHolder(View itemView) {
+        ProdutoDetalhesViewHolder(View itemView) {
             super(itemView);
             tvDescricao = itemView.findViewById(R.id.tvProdutoDetalheDescricao);
             tvCodigo = itemView.findViewById(R.id.tvProdutoDetalheCodigo);
