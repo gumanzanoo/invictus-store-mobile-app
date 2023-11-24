@@ -50,14 +50,8 @@ public class UsuarioController {
                 "Usuário encontrado", usuario);
     }
 
-    public Response getAll() {
-        ArrayList<Usuario> usuarios = usuarioDao.getAll();
-        if (usuarios == null) {
-            return new Response(Response.ERROR,
-                    "Nenhum usuário encontrado");
-        }
-        return new Response(Response.SUCCESS,
-                "Usuários encontrados", usuarios);
+    public ArrayList<Usuario> getAll() {
+        return usuarioDao.getAll();
     }
 
     public Response cadastrarUsuario(String nome, String email, String senha) {
