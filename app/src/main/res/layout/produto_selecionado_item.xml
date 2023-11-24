@@ -55,5 +55,5 @@
         android:backgroundTint="#00FF00"
         android:textColor="@color/white"
         android:text="-"
-        android:textSize="12sp"/>
+        />
 </LinearLayout>

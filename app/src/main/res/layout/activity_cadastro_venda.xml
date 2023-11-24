@@ -9,6 +9,25 @@
     android:layout_marginTop="30dp"
     android:layout_marginBottom="30dp">
 
+    <ImageButton
+        android:id="@+id/menuButton"
+        android:layout_width="30dp"
+        android:layout_height="22dp"
+        android:background="@drawable/menu"
+        android:layout_marginBottom="25dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CADASTRO DE VENDA"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="#112D4E"
+        android:textStyle="bold"
+        android:layout_marginBottom="25dp"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="500dp"
@@ -28,7 +47,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:background="@drawable/spinner_style" />
+            android:padding="10dp"
+            android:background="@drawable/edit_text_rounded_bg"
+            />
 
         <TextView
             android:layout_width="match_parent"
@@ -41,7 +62,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:background="@drawable/spinner_style" />
+            android:padding="10dp"
+            android:background="@drawable/edit_text_rounded_bg" />
 
         <TextView
             android:layout_width="match_parent"
@@ -79,11 +101,12 @@
         android:id="@+id/btCadastrarVenda"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#6A9DDB"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
         android:text="SALVAR"
-        android:textSize="16sp" />
+        android:textSize="20sp"
+        android:backgroundTint="#6A9DDB"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"/>
 
 </LinearLayout>

@@ -26,7 +26,7 @@ public class MenuActivity extends AppCompatActivity {
         btExtrato.setOnClickListener(view -> Activity.run(this, ExtratoActivity.class));
         btListaVendas.setOnClickListener(view -> Activity.run(this, VendaListActivity.class));
         btUsuario.setOnClickListener(view -> Activity.run(this, UsuarioListActivity.class));
-        //btProduto.setOnClickListener(view -> Activity.run(this, ProdutoListActivity.class));
-        //btCliente.setOnClickListener(view -> Activity.run(this, ClienteListActivity.class));
+        btProduto.setOnClickListener(view -> Activity.run(this, ProdutoListActivity.class));
+        btCliente.setOnClickListener(view -> Activity.run(this, ClienteListActivity.class));
     }
 }
