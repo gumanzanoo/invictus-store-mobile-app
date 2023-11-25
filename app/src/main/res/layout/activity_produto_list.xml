@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="LISTAGEM DE USUARIOS"
+        android:text="LISTAGEM DE PRODUTOS"
         android:textSize="20sp"
         android:gravity="center"
         android:textColor="#112D4E"
@@ -46,7 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:text="NOME"
+            android:text="DESCRIÇÃO"
             android:textSize="20sp"
             />
 
@@ -54,7 +54,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:text="EMAIL"
+            android:text="Val.Un"
             android:textSize="20sp"
             />
 

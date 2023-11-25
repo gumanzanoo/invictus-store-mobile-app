@@ -136,6 +136,7 @@ public class ProdutoDao implements IGenericDao<Produto> {
             if (cursor.moveToFirst()) {
                 do {
                     Produto produto = new Produto();
+                    produto.setId(cursor.getInt(0));
                     produto.setCod(cursor.getInt(1));
                     produto.setDescricao(cursor.getString(2));
                     produto.setValorUnitario(cursor.getDouble(3));

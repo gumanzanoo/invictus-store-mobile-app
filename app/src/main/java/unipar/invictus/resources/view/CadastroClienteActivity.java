@@ -41,7 +41,7 @@ public class CadastroClienteActivity extends AppCompatActivity {
         String email = edEmailCadastro.getText().toString();
         String doc = edDocCadastro.getText().toString();
 
-        Response response = clienteController.create(nome, email, doc);
+        Response response = clienteController.create(nome, doc, email);
         if (response.getStatus().equals(Response.SUCCESS)) {
             Toast.makeText(this, response.getMessage(), Toast.LENGTH_SHORT).show();
             Activity.run(this, MenuActivity.class);
